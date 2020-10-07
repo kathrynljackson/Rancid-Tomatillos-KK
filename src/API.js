@@ -1,13 +1,18 @@
-class API {
-  constructor(){
-    this.root= 'https://rancid-tomatillos.herokuapp.com/api/v2';
-  }
-
+let Api = {
+  dataRoot: 'https://rancid-tomatillos.herokuapp.com/api/v2',
   getMovieData(){
-    let url= `${this.root}/movies`;
-    return fetch(url)
+    return fetch(this.dataRoot+'/movies')
     .then(response => response.json());
-  };
+  }
 }
 
-export default API;
+// const dataRoot = 'https://rancid-tomatillos.herokuapp.com/api/v2';
+//
+// export const getMovieData = () => {
+//   return fetch(`${dataRoot}/movies`)
+//   .then(response => response.json())
+//   .then(response => console.log('getMovieData is running'))
+//   .then(data => console.log('this is the data', data))
+// }
+
+export default Api;
