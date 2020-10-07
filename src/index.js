@@ -3,28 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Api from './API.js';
+// import Api from './API.js';
 
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-let movies= [];
 
-Api.getMovieData()
-.then(data => movies = data.movies)
-.then( () => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App movies={movies}/>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-})
 
 
 
