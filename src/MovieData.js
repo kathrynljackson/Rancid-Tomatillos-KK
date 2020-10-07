@@ -20,13 +20,18 @@ class MovieData extends Component {
 
   render() {
     return (
-      <div>
+      <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
         return (
-          <section>
-          <h1 className='Apps' key={index}>
-            {movie.title}
-          </h1>
+          <section className='movie-card'>
+            <h1 className='movie-title Apps' key={movie.title}>
+              {movie.title}
+            </h1>
+            <p className='movie-date'>
+              {movie.release_date.substring(0,4)}
+            </p>
+            <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
+            <p className='movie-rating'>{movie.average_rating}/10</p>
           </section>
         )
       })}

@@ -5,9 +5,50 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: DimGrey;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.movie-cards {
+  border: 2px solid blue;
+  padding: 1%;
+  margin: 1%;
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.movie-card {
+  border: 2px solid cyan;
+  border-radius: 3px;
+  padding: 2%;
+  margin: 3%;
+  width: 25%;
+  height: auto;
+}
+
+.movie-title {
+
+}
+
+.movie-date {
+
+}
+
+.movie-poster {
+  border: 3px solid black;
+  height: 200px;
+  max-width: auto;
+  padding: 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-rating {
+  text-align: right;
 }
