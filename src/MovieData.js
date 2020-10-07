@@ -2,25 +2,39 @@ import React from 'react';
 import { Component } from 'react';
 
 
-class MovieData extends React.Component {
-  constructor(props) {
-    console.log(props)
+class MovieData extends Component {
+  constructor() {
     super();
-    let movies = props.movies;
     this.state = {
-      title: movies['title'],
-      releaseDate: movies['release_date'],
-      poster: movies['poster_path'],
-      averageRating: movies['average_rating']
+      movies: [],
+      error: '',
     };
   }
 
-  render(){
-    return (
-      <p>{this.state.title}</p>
-    )
+  componentDidMount() {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+      .then(response => response.json())
+      .then(data => this.setState({ movies : data.movies }))
+      .catch(error => this.setState({ error }))
   }
 
+  render() {
+    return (
+      <div>
+        {this.state.movies.map((movie, index) => {
+        return (
+          <section>
+          <h1 className='Apps' key={index}>
+            {movie.title}
+          </h1>
+          </section>
+        )
+      })}
+      </div>
+    )
+  }
 }
+
+
 
 export default MovieData;

@@ -13,18 +13,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// let movies= [];
 
-// Api.getMovieData()
-// .then(data => movies = data.movies)
-// .then( () => {
-//   ReactDOM.render(
-//     <React.StrictMode>
-//       <App movies={movies}/>
-//     </React.StrictMode>,
-//     document.getElementById('root')
-//   );
-// })
 
 
 
