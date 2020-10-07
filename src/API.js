@@ -1,10 +1,10 @@
-let Api = {
-  dataRoot: 'https://rancid-tomatillos.herokuapp.com/api/v2',
-  getMovieData(){
-    return fetch(this.dataRoot+'/movies')
-    .then(response => response.json());
-  }
-}
+// let Api = {
+//   dataRoot: 'https://rancid-tomatillos.herokuapp.com/api/v2',
+//   getMovieData(){
+//     return fetch(this.dataRoot+'/movies')
+//     .then(response => response.json());
+//   }
+// }
 
 // const dataRoot = 'https://rancid-tomatillos.herokuapp.com/api/v2';
 //
@@ -15,4 +15,4 @@ let Api = {
 //   .then(data => console.log('this is the data', data))
 // }
 
-export default Api;
+// export default Api;
