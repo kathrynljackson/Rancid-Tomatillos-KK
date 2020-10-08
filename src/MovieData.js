@@ -31,7 +31,7 @@ class MovieData extends Component {
               {movie.release_date.substring(0,4)}
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
-            <p className='movie-rating'>{movie.average_rating}/10</p>
+            <h1 className='movie-rating'>{movie.average_rating}/10</h1>
           </section>
         )
       })}
