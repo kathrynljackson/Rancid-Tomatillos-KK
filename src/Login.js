@@ -13,26 +13,30 @@ class Login extends Component {
 
   render() {
     return (
-      <form>
-        <label>NAME</label>
-        <input
-          type='text'
-          name='name'
-          value={this.state.name}>
-        </input>
-        <label>EMAIL</label>
-        <input
-          type='email'
-          name='email'
-          value={this.state.email}>
-        </input>
-        <label>PASSWORD</label>
-        <input
-          type='password'
-          name='password'
-          value={this.state.password}>
-        </input>
-      </form>
+      <article className="display-box">
+        <form className="login-form">
+          <div className="login-area">
+            <label>Name: </label>
+            <input
+              type='text'
+              name='name'
+              value={this.state.name}>
+            </input>
+            <label>Email: </label>
+            <input
+              type='email'
+              name='email'
+              value={this.state.email}>
+            </input>
+            <label>Password: </label>
+            <input
+              type='password'
+              name='password'
+              value={this.state.password}>
+            </input>
+          </div>
+        </form>
+      </article>
     )
   }
 }
