@@ -10,30 +10,7 @@ class Login extends Component {
     }
   }
 
-//   componentDidMount() {
-//     // Simple POST request with a JSON body using fetch
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ title: 'React POST Request Example' })
-//     };
-//     fetch('https://jsonplaceholder.typicode.com/posts', requestOptions)
-//         .then(response => response.json())
-//         .then(data => this.setState({ postId: data.id }));
-// }
 
-  componentDidMount() {
-    const loginPost = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'greg@turing.io', password: 'abc123' })
-    }
-    fetch(' https://rancid-tomatillos.herokuapp.com/api/v2/login', loginPost)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      // .then(data => this.setState({ email: data.user.email, password: data.user.password }))
-      .catch(error => console.log('Not fetching user data'))
-  }
 
   updateValue(event) {
     this.setState({ [event.target.email]: event.target.value })
@@ -67,6 +44,19 @@ class Login extends Component {
         </form>
       </article>
     )
+  }
+
+  componentDidMount() {
+    const loginPost = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: 'greg@turing.io', password: 'abc123' })
+    }
+    fetch(' https://rancid-tomatillos.herokuapp.com/api/v2/login', loginPost)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      // .then(data => this.setState({ email: data.user.email, password: data.user.password }))
+      .catch(error => console.log('Not fetching user data'))
   }
 }
 
