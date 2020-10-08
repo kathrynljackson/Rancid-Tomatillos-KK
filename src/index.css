@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #330000;
+  background: #230000;
 }
 
 code {
@@ -13,12 +13,23 @@ code {
     monospace;
 }
 
+/* .page-header {
+  color: silver;
+  text-shadow: 0 0 5px #330000;
+  font-size: 30px;
+  background: black;
+} */
+
 .movie-cards {
-  border: 2px solid blue;
+  border-top: 10px solid silver;
   padding: .3%;
-  margin: 2%;
+  margin: 1%;
   width: 100%;
   max-width: 100%;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 
@@ -27,8 +38,8 @@ code {
   border: 4px solid silver;
   border-radius: 5px;
   padding: 2%;
-  margin: 3%;
-  width: 25%;
+  margin: 2%;
+  width: 20%;
   height: auto;
 }
 
