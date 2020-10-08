@@ -6,12 +6,14 @@ import './App.css';
 // // import { getMovieData } from './API.js';
 // // import API from './API.js';
 import MovieData from './MovieData.js';
+import Header from './Header.js';
 //
 //
 
 function App() {
   return (
     <div>
+      <Header />
       <MovieData />
     </div>
   )
