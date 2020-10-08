@@ -23,7 +23,7 @@ class MovieData extends Component {
       <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
         return (
-          <section className='movie-card'>
+          <section className='movie-card' key={index}>
             <h1 className='movie-title Apps' key={movie.title}>
               {movie.title}
             </h1>
