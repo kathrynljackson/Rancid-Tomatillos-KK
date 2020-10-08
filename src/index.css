@@ -21,6 +21,10 @@ code {
   background: black;
 } */
 
+label {
+  color: #f2f2f2;
+}
+
 .movie-cards {
   border-top: 5px solid silver;
   padding: 1%;

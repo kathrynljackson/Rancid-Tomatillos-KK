@@ -7,12 +7,14 @@ import './App.css';
 // // import API from './API.js';
 import MovieData from './MovieData.js';
 import Header from './Header.js';
+import Login from './Login.js'
 //
 //
 
 function App() {
   return (
     <div>
+      <Login />
       <Header />
       <MovieData />
     </div>
