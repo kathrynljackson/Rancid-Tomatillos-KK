@@ -8,8 +8,9 @@ import './App.css';
 import MovieData from '../MovieData/MovieData.js';
 import Header from '../Header/Header.js';
 import Login from '../Login/Login.js'
+
 // import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 //
 //
 
@@ -26,17 +27,23 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // }
 
 function App() {
-    return (
-        <main>
-            <Switch>
-                <Route path="/" component={Login} exact />
-                <Route path="/movie" component={MovieData} />
-                // <Route component={Error} />
-            </Switch>
-        </main>
-    )
+  return (
+    <main>
+        <Switch>
+            <Route path="/" render= {() => { 
+              return <Login />;}
+            }
+              exact />
+            <Route path="/movie" render= {() => { 
+              return <MovieData />;}
+            }
+            exact />
+            // <Route component={Error} />
+        </Switch>
+    </main>
+  )
 }
 
 
 
-export default App;
+export default withRouter(App);
