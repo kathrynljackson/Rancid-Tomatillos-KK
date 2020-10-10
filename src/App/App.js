@@ -5,9 +5,9 @@ import './App.css';
 // import ReactDOM from 'react-dom';
 // // import { getMovieData } from './API.js';
 // // import API from './API.js';
-import MovieData from './MovieData.js';
-import Header from './Header.js';
-import Login from './Login.js'
+import MovieData from '../MovieData/MovieData.js';
+import Header from '../Header/Header.js';
+import Login from '../Login/Login.js'
 // import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //

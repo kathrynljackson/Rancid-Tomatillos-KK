@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component } from 'react';
-import { postData } from './apiFetch.js'
+import { postData } from '../apiFetch.js'
 
 class Login extends Component {
   constructor() {
