@@ -1,14 +1,14 @@
 import React from 'react'
-import { Redirect, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import { Component } from 'react';
 
-import { postData } from './apiFetch.js'
-import App from './App.js';
+import { postData } from '../apiFetch.js'
+import App from '../App/App.js';
 
 
 class Login extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       email: '',
       password: '',
@@ -16,10 +16,32 @@ class Login extends Component {
     }
   }
 
+  clearInputs = () => {
+    this.setState({email: '', password: ''})
+  }
+
+  updateValue = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  loginHandler = (event) => {
+
+    event.preventDefault();
+    postData(this.state.email, this.state.password)
+    .then(response => console.log(response))
+    .then(() => this.clearInputs())
+    .then(this.setState({loggedIn: true}))
+    // .then(this.resetLoggedInState())
+    .catch(error => console.log('Not fetching user data'))
+  }
+  // console.log('login handler is running', this.state.loggedIn);
+
+
   render() {
     // if (this.state.loggedIn === true) {
     //   return <Redirect to='/movie' />
     // }
+
     return (
       <article className="display-box">
         <form className="login-form">
@@ -39,48 +61,39 @@ class Login extends Component {
               onChange={this.updateValue}
             />
           </div>
-          <Link to="/movie" onClick={this.both}>Submit</Link>
+          <button onClick={this.loginHandler}>Submit</button>
+          {this.state.loggedIn && <Redirect to='/movie' />}
         </form>
       </article>
     )
   }
 
-  updateValue = (event) => {
-    this.setState({ [event.target.name]: event.target.value })
-  }
 
-  resetLoggedInState = () => {
-    this.setState({ loggedIn: true }, function () {
-      console.log('reset is running 1', this.state.loggedIn);
-      this.redirect()
-    });
-    console.log('reset is running 2', this.state.loggedIn);
-  }
+  // resetLoggedInState = () => {
+  //   this.setState({ loggedIn: true }, function () {
+  //     console.log('reset is running 1', this.state.loggedIn);
+  //     this.redirect()
+  //   });
+  //   console.log('reset is running 2', this.state.loggedIn);
+  // }
 
-  redirect = () => {
-    if (this.state.loggedIn = true) {
-      return <Redirect to='/movie' />
-      console.log('REDIRECT IS RUNNING 1', this.state.loggedIn)
-    }
-    console.log('REDIRECT IS RUNNING 2', this.state.loggedIn)
-  }
+  // redirect = () => {
+  //   if (this.state.loggedIn = true) {
+  //     return <Redirect to='/movie' />
+  //     console.log('REDIRECT IS RUNNING 1', this.state.loggedIn)
+  //   }
+  //   console.log('REDIRECT IS RUNNING 2', this.state.loggedIn)
+  // }
 
-  loginHandler = (event) => {
-    event.preventDefault();
-    postData(this.state.email, this.state.password)
-    .then(response => console.log(response))
-    .then(this.resetLoggedInState())
-    .catch(error => console.log('Not fetching user data'));
-    console.log('login handler is running', this.state.loggedIn);
-  }
+  // loginHandler = (event) => {
 
-  both = (event) => {
-    console.log('BOTH IS RUNNING', this.state.loggedIn)
-    //this.redirect();
-    this.loginHandler(event);
-    console.log(this.state.login)
-
-  }
+  // both = (event) => {
+  //   console.log('BOTH IS RUNNING', this.state.loggedIn)
+  //   //this.redirect();
+  //   this.loginHandler(event);
+  //   console.log(this.state.login)
+  //
+  // }
 
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Component } from 'react';
+import { Component } from 'react';
 // //import logo from './logo.svg';
 import './App.css';
 // import ReactDOM from 'react-dom';
@@ -10,40 +10,73 @@ import Header from '../Header/Header.js';
 import Login from '../Login/Login.js'
 
 // import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 //
 //
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      currentUser: '',
+      userId: 0,
+      isLoggedIn: false
+    }
+  }
+
+  setCurrentUser = (data) => {
+    this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
+  }
+
+  render = () => {
+    return (
+      <main>
+        <BrowserRouter>
+        <Route path='/login' >
+          <Login setCurrentUser={this.setCurrentUser} />
+        </Route>
+        <Route path='/movie' >
+          <MovieData />
+        </Route>
+        </BrowserRouter>
+      </main>
+    )
+  }
+}
 
 // function App() {
 //   return (
-//     <div>
-//       <switch>
-//       <Login />
-//       </switch>
-//       <Header />
-//       <MovieData />
-//     </div>
+//     <BrowserRouter>
+//       <div>
+//       <Switch>
+//         <Route path="/login" component={Login} />
+//         <Route path="/movie" component={MovieData} />
+//         </Switch>
+//       </div>
+//     </BrowserRouter>
+//   );
+// }
+
+
+// function App() {
+//   return (
+//     <main>
+//         <Switch>
+//             <Route exact path="/" render= {() => { 
+//               return <Login />;}
+//             }
+//               exact />
+//             <Route path="/movie" render= {() => { 
+//               return <MovieData />;}
+//             }
+//             exact />
+//             // <Route component={Error} />
+//         </Switch>
+//     </main>
 //   )
 // }
 
-function App() {
-  return (
-    <main>
-        <Switch>
-            <Route path="/" render= {() => { 
-              return <Login />;}
-            }
-              exact />
-            <Route path="/movie" render= {() => { 
-              return <MovieData />;}
-            }
-            exact />
-            // <Route component={Error} />
-        </Switch>
-    </main>
-  )
-}
 
 
-
-export default withRouter(App);
+export default App;
