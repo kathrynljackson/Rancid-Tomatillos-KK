@@ -8,6 +8,7 @@ import './App.css';
 import MovieData from '../MovieData/MovieData.js';
 import Header from '../Header/Header.js';
 import Login from '../Login/Login.js'
+import ShowPage from '../ShowPage/ShowPage.js'
 
 // import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -38,6 +39,9 @@ class App extends Component {
         </Route>
         <Route path='/movie' >
           <MovieData />
+        </Route>
+        <Route path='/showpage' >
+          <ShowPage />
         </Route>
         </BrowserRouter>
       </main>
