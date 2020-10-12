@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
-
+import ShowPage from '../ShowPage/ShowPage.js';
+import { Link, Route } from 'react-router-dom';
 
 class MovieData extends Component {
   constructor() {
@@ -31,7 +32,8 @@ class MovieData extends Component {
               {movie.release_date.substring(0,4)}
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
-            <h1 className='movie-rating'>{movie.average_rating}/10</h1>
+            <h1 className='movie-rating'>{movie.average_rating.toFixed(1)}/10</h1>
+            <button>Click Here for More Info: {movie.id}</button>
           </section>
         )
       })}

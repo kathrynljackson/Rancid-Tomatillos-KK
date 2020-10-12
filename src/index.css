@@ -132,3 +132,11 @@ input {
   width: 100vw;
   height: 70vh;
 }
+
+.single-movie-link {
+  color: white;
+}
+
+.test-script {
+  color: white;
+}
