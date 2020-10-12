@@ -16,9 +16,9 @@ class Login extends Component {
     }
   }
 
-  clearInputs = () => {
-    this.setState({email: '', password: ''})
-  }
+  // clearInputs = () => {
+  //   this.setState({email: '', password: ''})
+  // }
 
   updateValue = (event) => {
     this.setState({ [event.target.name]: event.target.value })
@@ -29,7 +29,7 @@ class Login extends Component {
     event.preventDefault();
     postData(this.state.email, this.state.password)
     .then(response => console.log(response))
-    .then(() => this.clearInputs())
+    //.then(() => this.clearInputs())
     .then(this.setState({loggedIn: true}))
     // .then(this.resetLoggedInState())
     .catch(error => console.log('Not fetching user data'))
