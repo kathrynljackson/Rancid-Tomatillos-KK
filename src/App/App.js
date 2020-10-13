@@ -11,7 +11,7 @@ import Login from '../Login/Login.js'
 import ShowPage from '../ShowPage/ShowPage.js'
 
 // import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 //
 //
@@ -26,25 +26,27 @@ class App extends Component {
     }
   }
 
-  setCurrentUser = (data) => {
-    this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
-  }
+  // setCurrentUser = (data) => {
+  //   this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
+  // }
 
   render = () => {
     return (
-      <main>
-        <BrowserRouter>
+      <main className='App'>
         <Route path='/login' >
           <Login setCurrentUser={this.setCurrentUser} />
         </Route>
         <Route path='/movie' >
           <MovieData />
         </Route>
-        <Route path='/showpage' >
-          <ShowPage />
-        </Route>
-
-        </BrowserRouter>
+        <Route exact path='/showpage/:id'
+        render={({match}) => {
+          const { id } = match.params;
+          const movieToRender = movie.find(show => show.id === parseInt(id))
+            return <ShowPage {...movieToRender}/>
+          }}
+        // <ShowPage {...props} />}
+          />
       </main>
     )
   }

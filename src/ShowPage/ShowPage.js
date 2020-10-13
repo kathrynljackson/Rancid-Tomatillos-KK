@@ -6,7 +6,7 @@ class ShowPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 337401,
+      id: Number(this.props.match.params.id),
       title: '',
       poster_path: '',
       backdrop_path: '',
@@ -20,6 +20,12 @@ class ShowPage extends Component {
       tagline: '',
     }
     console.log('props', props)
+  }
+
+  componentDidMount() {
+    getOneMovie(this.state.id)
+      .then((data) => this.singleMovieData(data.movie))
+      .catch((error) => console.log(error))
   }
 
 
@@ -36,13 +42,13 @@ class ShowPage extends Component {
   // }
 
 
-  fetchSingleMovie = () => {
-    getOneMovie(this.state.id)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .then(data =>  this.singleMovieData(data.movie))
-    console.log('fetchSingleMovie', this.state.id)
-  }
+  // fetchSingleMovie = () => {
+  //   getOneMovie(this.state.id)
+  //     .then(response => response.json())
+  //     .then(response => console.log(response))
+  //     .then(data =>  this.singleMovieData(data.movie))
+  //   console.log('fetchSingleMovie', this.state.id)
+  // }
 
   singleMovieData = (data) => {
     this.setState({
@@ -61,9 +67,9 @@ class ShowPage extends Component {
   }
 
   render() {
-    this.fetchSingleMovie();
+    console.log("HELLO")
     console.log(this.state)
-    console.log('render-id', this.id)
+    console.log('render-id', this.state.id)
     return (
       <div>
         <section className='single-movie'>

@@ -3,6 +3,8 @@ import { Component } from 'react';
 import ShowPage from '../ShowPage/ShowPage.js';
 import { Link, Route } from 'react-router-dom';
 
+import { movieDataFetch } from '../apiFetch.js'
+
 class MovieData extends Component {
   constructor() {
     super();
@@ -13,13 +15,22 @@ class MovieData extends Component {
   }
 
   componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-      .then(response => response.json())
-      .then(data => this.setState({ movies : data.movies }))
+    console.log('here2')
+    movieDataFetch()
+      .then(response => {
+        console.log('here4', response)
+        return response
+      })
+      .then(data => {
+        console.log('here5', data)
+        this.setState({ movies : data.movies })
+      })
       .catch(error => this.setState({ error }))
   }
 
   render() {
+    console.log('here')
+    // this.eventHandler()
     return (
       <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
