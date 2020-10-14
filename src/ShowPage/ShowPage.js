@@ -88,8 +88,8 @@ class ShowPage extends Component {
               <p className='single-movie-release-date'><a className='single-movie-info'>Release Date:</a> {this.state.release_date}</p>
               <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {Math.floor(this.state.average_rating*10)}%</p>
               <p className='single-movie-genre'><a className='single-movie-info'>Genre(s):</a> {movieGenres}</p>
-              <p className='single-movie-budget'><a className='single-movie-info'>Budget:</a> ${this.state.budget}</p>
-              <p className='single-movie-revenue'><a className='single-movie-info'>Revenue:</a> ${this.state.revenue}</p>
+              <p className='single-movie-budget'><a className='single-movie-info'>Budget:</a> ${this.state.budget.toLocaleString()}</p>
+              <p className='single-movie-revenue'><a className='single-movie-info'>Revenue:</a> ${this.state.revenue.toLocaleString()}</p>
               <p className='single-movie-runtime'><a className='single-movie-info'>Runtime:</a> {this.state.runtime} minutes</p>
             </section>
             <section className='movie-main-top-right'>
