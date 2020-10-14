@@ -133,14 +133,54 @@ input {
   height: 70vh;
 }
 
-.single-movie-link {
+/* .single-movie-link {
   color: white;
+} */
+
+.single-movie-area {
+  color: white;
+  padding: 1%;
 }
 
-.test-script {
-  color: white;
+.single-movie-info {
+  font-weight: bold
 }
 
-.single-movie-title {
-  color: white;
+.single-movie-area section {
+  justify-content: space-between;
+}
+
+.movie-main-top {
+  display: flex;
+  flex-direction: row;
+  height: 60%;
+}
+
+.movie-main-top-left {
+
+ text-align: left;
+ border: 3px solid silver;
+ background: #230000;
+ padding: 1%;
+ font-size: 20px;
+}
+
+.single-movie-poster {
+  border: 3px solid silver;
+  background: silver;
+  height: 360px;
+  max-width: auto;
+  padding: 1%;
+  display: block;
+  margin: 1%
+}
+
+.movie-main-bottom {
+  text-align: left;
+  border: 3px solid silver;
+  background: #230000;
+  padding: 1%;
+  margin-top: 1%;
+  font-size: 20px;
+  line-height: 1.5;
 }
