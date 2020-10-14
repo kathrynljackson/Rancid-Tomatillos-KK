@@ -8,9 +8,10 @@ import './App.css';
 import MovieData from '../MovieData/MovieData.js';
 import Header from '../Header/Header.js';
 import Login from '../Login/Login.js'
+import ShowPage from '../ShowPage/ShowPage.js'
 
 // import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 //
 //
@@ -25,21 +26,24 @@ class App extends Component {
     }
   }
 
-  setCurrentUser = (data) => {
-    this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
-  }
+  // setCurrentUser = (data) => {
+  //   this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
+  // }
 
   render = () => {
     return (
-      <main>
-        <BrowserRouter>
+      <main className='App'>
         <Route path='/login' >
           <Login setCurrentUser={this.setCurrentUser} />
         </Route>
         <Route path='/movie' >
           <MovieData />
         </Route>
-        </BrowserRouter>
+        <Route path='/showpage/:id'
+        render={(props) =>
+          <ShowPage {...props} />}
+          />
+
       </main>
     )
   }

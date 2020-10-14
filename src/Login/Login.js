@@ -16,9 +16,9 @@ class Login extends Component {
     }
   }
 
-  clearInputs = () => {
-    this.setState({email: '', password: ''})
-  }
+  // clearInputs = () => {
+  //   this.setState({email: '', password: ''})
+  // }
 
   updateValue = (event) => {
     this.setState({ [event.target.name]: event.target.value })
@@ -28,13 +28,28 @@ class Login extends Component {
 
     event.preventDefault();
     postData(this.state.email, this.state.password)
-    .then(response => console.log(response))
-    .then(() => this.clearInputs())
-    .then(this.setState({loggedIn: true}))
+    .then(response => {
+      console.log(response)
+      return response})
+    //.then(() => this.clearInputs())
+    .then(data => {
+      if (data.user) {
+        this.setState({loggedIn: true});
+      } else {
+        this.setState({loggedIn: false})
+      }
+      console.log("SCOTT", data);
+    })
+
+
+
     // .then(this.resetLoggedInState())
     .catch(error => console.log('Not fetching user data'))
   }
   // console.log('login handler is running', this.state.loggedIn);
+
+  // .then(data => this.setState({ movies : data.movies }))
+
 
 
   render() {
@@ -62,7 +77,7 @@ class Login extends Component {
             />
           </div>
           <button onClick={this.loginHandler}>Submit</button>
-          {this.state.loggedIn && <Redirect to='/movie' />}
+          // {this.state.loggedIn && <Redirect to='/movie' />}
         </form>
       </article>
     )

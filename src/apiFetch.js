@@ -6,6 +6,13 @@
 // }
 
 
+  export const movieDataFetch = ()  => {
+    console.log('here3')
+    return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+    .then(response => response.json())
+
+}
+
 
   export const postData = (email, password) => {
       return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
@@ -22,3 +29,10 @@
       // .then(response => console.log(response))
       .catch(err => console.log(err))
     }
+
+  export const getOneMovie = (id) => {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then(response => response.json())
+      // .then(console.log('NOW FETCHING SINGLE MOVIE DATA'))
+      // .catch(err => console.log('ERROR IN GETONEMOVIE'))
+  }
