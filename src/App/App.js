@@ -39,14 +39,11 @@ class App extends Component {
         <Route path='/movie' >
           <MovieData />
         </Route>
-        <Route exact path='/showpage/:id'
-        render={({match}) => {
-          const { id } = match.params;
-          const movieToRender = movie.find(show => show.id === parseInt(id))
-            return <ShowPage {...movieToRender}/>
-          }}
-        // <ShowPage {...props} />}
+        <Route path='/showpage/:id'
+        render={(props) =>
+          <ShowPage {...props} />}
           />
+
       </main>
     )
   }
