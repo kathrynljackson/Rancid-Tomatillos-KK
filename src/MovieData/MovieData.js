@@ -53,7 +53,7 @@ class MovieData extends Component {
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>{movie.average_rating.toFixed(1)}/10</h1>
-            <Link to={'/showpage/'+thisID} className='movie-link'>More about {movie.title}</Link>
+            <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
       })}
