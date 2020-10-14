@@ -22,21 +22,31 @@ class App extends Component {
     this.state = {
       currentUser: '',
       userId: 0,
-      isLoggedIn: false
+      loginStatus: false
     }
   }
 
-  // setCurrentUser = (data) => {
-  //   this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
-  // }
+  setCurrentUser = (data) => {
+    this.setState({ currentUser: data.user.name, userID: data.user.id, loginStatus: true})
+  }
+
+  userMessage = () => {
+    if (this.state.loginStatus) {
+      return <h2>Welcome, {this.state.currentUser}!</h2>
+    } else {
+      return <h2>BLAH</h2>
+    }
+  }
 
   render = () => {
+    let welcomeMessage = this.userMessage()
     return (
       <main className='App'>
         <Route path='/login' >
           <Login setCurrentUser={this.setCurrentUser} />
         </Route>
         <Route path='/movie' >
+          <Header userMessage={welcomeMessage} />
           <MovieData />
         </Route>
         <Route path='/showpage/:id'
