@@ -1,6 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 import ShowPage from '../ShowPage/ShowPage.js';
+import Header from '../Header/Header.js';
+
 import { Link, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
@@ -40,6 +42,7 @@ class MovieData extends Component {
 
     // this.eventHandler()
     return (
+      <main>
       <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
         const thisID = movie.id;
@@ -58,6 +61,7 @@ class MovieData extends Component {
         )
       })}
       </div>
+      </main>
     )
   }
 }

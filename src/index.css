@@ -200,3 +200,7 @@ input {
 .movie-link:hover {
   font-weight: bold;
 }
+
+.login-message {
+  color: white;
+}

@@ -16,6 +16,6 @@ describe('Login', () => {
   it('should render header text', () => {
     render(<Header />)
 
-    expect(screen.getByText('Your Account')).toBeInTheDocument()
+    expect(screen.getByText('Rotten Tomatillos')).toBeInTheDocument()
   })
 })

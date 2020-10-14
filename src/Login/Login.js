@@ -5,6 +5,8 @@ import { Component } from 'react';
 import { postData } from '../apiFetch.js'
 import App from '../App/App.js';
 
+import PropTypes from 'prop-types'
+
 
 class Login extends Component {
   constructor(props) {
@@ -40,6 +42,7 @@ class Login extends Component {
       }
       console.log("SCOTT", data);
     })
+    .then(data => this.props.setCurrentUser(data))
 
 
 
@@ -113,5 +116,9 @@ class Login extends Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  setCurrentUser: PropTypes.func.isRequired,
+}
 
 // A user’s login session information: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
