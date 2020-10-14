@@ -67,16 +67,17 @@ class ShowPage extends Component {
   }
 
   render() {
-    console.log("HELLO")
-    console.log(this.state)
-    console.log('render-id', this.state.id)
-    let imgUrl = this.state.backdrop_path
+    console.log('current movie: ', this.state)
+    let imgUrl = this.state.backdrop_path;
+    let movieGenres = this.state.genres.map(genre => {
+      return <li>{genre}</li>;
+    })
     return (
       <div>
         <section className='single-movie-area'
           style = {{ backgroundImage: `url(${imgUrl})`,
-            backgroundSize: 'auto 100%',
-            backgroundPosition: 'center center',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
               }}>
@@ -85,8 +86,8 @@ class ShowPage extends Component {
               <h2 className='single-movie-title'>{this.state.title}</h2>
               <p className='single-movie-tagline'>{this.state.tagline}</p>
               <p className='single-movie-release-date'><a className='single-movie-info'>Release Date:</a> {this.state.release_date}</p>
-              <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {this.state.average_rating.toFixed(2)}/10</p>
-              <p className='single-movie-genre'><a className='single-movie-info'>Genre:</a> {this.state.genres}</p>
+              <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {Math.floor(this.state.average_rating*10)}%</p>
+              <p className='single-movie-genre'><a className='single-movie-info'>Genre(s):</a> {movieGenres}</p>
               <p className='single-movie-budget'><a className='single-movie-info'>Budget:</a> ${this.state.budget}</p>
               <p className='single-movie-revenue'><a className='single-movie-info'>Revenue:</a> ${this.state.revenue}</p>
               <p className='single-movie-runtime'><a className='single-movie-info'>Runtime:</a> {this.state.runtime} minutes</p>

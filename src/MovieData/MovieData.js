@@ -1,16 +1,18 @@
 import React from 'react';
 import { Component } from 'react';
 import ShowPage from '../ShowPage/ShowPage.js';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { movieDataFetch } from '../apiFetch.js'
 
 class MovieData extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       movies: [],
       error: '',
+      history: [],
     };
   }
 
@@ -28,12 +30,19 @@ class MovieData extends Component {
       .catch(error => this.setState({ error }))
   }
 
+  moreAbout(path) {
+    this.props.history.push(path);
+    console.log('moreAbout ACTIVATED');
+  }
+
   render() {
     console.log('here')
+
     // this.eventHandler()
     return (
       <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
+        const thisID = movie.id;
         return (
           <section className='movie-card' key={index}>
             <h1 className='movie-title Apps' key={movie.title}>
@@ -44,7 +53,7 @@ class MovieData extends Component {
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>{movie.average_rating.toFixed(1)}/10</h1>
-            <button>Click Here for More Info: {movie.id}</button>
+            <Link to={'/showpage/'+thisID} className='movie-link'>More about {movie.title}</Link>
           </section>
         )
       })}
