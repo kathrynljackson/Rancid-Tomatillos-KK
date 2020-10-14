@@ -165,6 +165,10 @@ input {
  font-size: 20px;
 }
 
+.movie-main-top-right {
+  align-items: right;
+}
+
 .single-movie-poster {
   border: 3px solid silver;
   background: silver;
@@ -172,7 +176,7 @@ input {
   max-width: auto;
   padding: 1%;
   display: block;
-  margin: 1%
+  margin: 1%;
 }
 
 .movie-main-bottom {
@@ -183,4 +187,16 @@ input {
   margin-top: 1%;
   font-size: 20px;
   line-height: 1.5;
+}
+
+.movie-link:link {
+  text-decoration: none;
+  color: black;
+  background-color: #f2f2f2;
+  padding: 2%;
+  border-radius: 3px;
+}
+
+.movie-link:hover {
+  font-weight: bold;
 }
