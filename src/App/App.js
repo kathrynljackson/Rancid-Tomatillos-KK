@@ -5,10 +5,11 @@ import './App.css';
 // import ReactDOM from 'react-dom';
 // // import { getMovieData } from './API.js';
 // // import API from './API.js';
-import MovieData from '../MovieData/MovieData.js';
 import Header from '../Header/Header.js';
+import MovieData from '../MovieData/MovieData.js';
 import Login from '../Login/Login.js'
 import ShowPage from '../ShowPage/ShowPage.js'
+import { getRatings} from '../apiFetch.js'
 
 // import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
@@ -22,21 +23,54 @@ class App extends Component {
     this.state = {
       currentUser: '',
       userId: 0,
-      isLoggedIn: false
+      loginStatus: false,
+      myRatings: [],
     }
   }
 
-  // setCurrentUser = (data) => {
-  //   this.setState({ currentUser: data.user.name, userID: data.user.id, isLoggedIn: true})
-  // }
+
+  setCurrentUser = (data) => {
+    this.setState({ currentUser: data.user.name, userID: data.user.id, loginStatus: true})
+  }
+
+  userMessage = () => {
+    if (this.state.loginStatus === true) {
+      return <h2>BLAH</h2>
+    } else {
+
+      return <h2>Welcome, {this.state.currentUser}!</h2>
+      console.log('MESSAGE', this.state.currentUser)
+
+
+    }
+  }
+
+  loginView = () => {
+    if (!this.state.user.name) {
+      this.setState({loginStatus: true})
+    }
+  }
+
+  getUserRatings = () => {
+    console.log('getUserRatings IS RUNNING')
+    let id = this.state.userId;
+    getRatings(id)
+    .then(data => this.setState({ myRatings: data.ratings }))
+  }
 
   render = () => {
+    let welcomeMessage = this.userMessage()
     return (
       <main className='App'>
-        <Route path='/login' >
-          <Login setCurrentUser={this.setCurrentUser} />
+        <Route path='/begin'>
+          <Header />
+          <MovieData />
+        </Route>
+        <Route exact path='/login' >
+          <Login />
         </Route>
         <Route path='/movie' >
+          <Header userMessage={welcomeMessage} />
           <MovieData />
         </Route>
         <Route path='/showpage/:id'

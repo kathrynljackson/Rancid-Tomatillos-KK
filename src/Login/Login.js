@@ -5,6 +5,8 @@ import { Component } from 'react';
 import { postData } from '../apiFetch.js'
 import App from '../App/App.js';
 
+import PropTypes from 'prop-types'
+
 
 class Login extends Component {
   constructor(props) {
@@ -31,7 +33,6 @@ class Login extends Component {
     .then(response => {
       console.log(response)
       return response})
-    //.then(() => this.clearInputs())
     .then(data => {
       if (data.user) {
         this.setState({loggedIn: true});
@@ -40,23 +41,14 @@ class Login extends Component {
       }
       console.log("SCOTT", data);
     })
-
-
-
-    // .then(this.resetLoggedInState())
+    .then(data => this.props.setCurrentUser(data))
     .catch(error => console.log('Not fetching user data'))
   }
-  // console.log('login handler is running', this.state.loggedIn);
 
-  // .then(data => this.setState({ movies : data.movies }))
 
 
 
   render() {
-    // if (this.state.loggedIn === true) {
-    //   return <Redirect to='/movie' />
-    // }
-
     return (
       <article className="display-box">
         <form className="login-form">
@@ -113,5 +105,9 @@ class Login extends Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  setCurrentUser: PropTypes.func.isRequired,
+}
 
 // A user’s login session information: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}

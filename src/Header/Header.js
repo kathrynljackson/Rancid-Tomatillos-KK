@@ -1,19 +1,27 @@
 import React from 'react'
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class Header extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
 
+    }
   }
 
   render() {
     return (
       <header>
-        <p className="header-text">Your Account</p>
+        <section className="login-message">{this.props.userMessage}</section>
+        <p className="header-text">Rotten Tomatillos</p>
+        <Link to={'/login'} className='header-link'>LOGIN</Link>
       </header>
     )
   }
 }
+
+
 
 export default Header;

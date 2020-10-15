@@ -29,27 +29,6 @@ class ShowPage extends Component {
   }
 
 
-
-  // componentDidMount(id){
-  //   return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-  //     .then(response => response.json())
-  //     .then(response => console.log(response))
-  //   console.log('fetchSingleMovie', this.state.id)
-  // }
-
-  // updateMovieInfo = (event) => {
-  //   this.setState()
-  // }
-
-
-  // fetchSingleMovie = () => {
-  //   getOneMovie(this.state.id)
-  //     .then(response => response.json())
-  //     .then(response => console.log(response))
-  //     .then(data =>  this.singleMovieData(data.movie))
-  //   console.log('fetchSingleMovie', this.state.id)
-  // }
-
   singleMovieData = (data) => {
     this.setState({
       title: data.title,
@@ -66,11 +45,19 @@ class ShowPage extends Component {
     })
   }
 
+
+
+    handleChange = (event) => {
+      console.log('RESETTING USER RATING')
+      this.setState({user_rating: parseInt(event.target.value)});
+    }
+
+
   render() {
     console.log('current movie: ', this.state)
     let imgUrl = this.state.backdrop_path;
     let movieGenres = this.state.genres.map(genre => {
-      return <li>{genre}</li>;
+      return <li key={genre}>{genre}</li>;
     })
     return (
       <div>
@@ -86,7 +73,8 @@ class ShowPage extends Component {
               <h2 className='single-movie-title'>{this.state.title}</h2>
               <p className='single-movie-tagline'>{this.state.tagline}</p>
               <p className='single-movie-release-date'><a className='single-movie-info'>Release Date:</a> {this.state.release_date}</p>
-              <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {Math.floor(this.state.average_rating*10)}%</p>
+              <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {this.state.average_rating.toFixed(1)}/10</p>
+              <p className='user-movie-rating'><a className='single-movie-info'>My Rating:</a> {this.state.user_rating}/10</p>
               <p className='single-movie-genre'><a className='single-movie-info'>Genre(s):</a> {movieGenres}</p>
               <p className='single-movie-budget'><a className='single-movie-info'>Budget:</a> ${this.state.budget.toLocaleString()}</p>
               <p className='single-movie-revenue'><a className='single-movie-info'>Revenue:</a> ${this.state.revenue.toLocaleString()}</p>
@@ -98,7 +86,29 @@ class ShowPage extends Component {
           </section>
           <section className='movie-main-bottom'>
             <p className='movie-main-overview'>{this.state.overview}</p>
+
           </section>
+
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Rate this Movie:
+              <select value = {this.state.user_rating} onChange={this.handleChange}>
+                <option value="0">Rate this movie!</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+
         </section>
       </div>
     )
