@@ -2,11 +2,10 @@ import React from 'react';
 import { Component } from 'react';
 import ShowPage from '../ShowPage/ShowPage.js';
 import Header from '../Header/Header.js';
-
 import { Link, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-
 import { movieDataFetch } from '../apiFetch.js'
+//import { getRatings } from '../apiFetch.js'
 
 class MovieData extends Component {
   constructor(props) {
@@ -14,32 +13,32 @@ class MovieData extends Component {
     this.state = {
       movies: [],
       error: '',
-      history: [],
+      userRating: 0,
     };
   }
 
   componentDidMount() {
-    console.log('here2')
     movieDataFetch()
       .then(response => {
-        console.log('here4', response)
         return response
       })
-      .then(data => {
-        console.log('here5', data)
-        this.setState({ movies : data.movies })
+      .then(data => {this.setState({ movies : data.movies })
       })
       .catch(error => this.setState({ error }))
   }
 
-  moreAbout(path) {
-    this.props.history.push(path);
-    console.log('moreAbout ACTIVATED');
-  }
+  // setUserRating(){
+  //   getRatings(userIDFrom another class)
+  //   .then(response => {
+  //     return response
+  //   })
+  //   .then(data => {this.setState({ movies : data.movies })
+  //   })
+  //   .catch(error => this.setState({ error }))
+  // }
 
   render() {
-    console.log('here')
-
+    let myRating = this.state.userRating;
     // this.eventHandler()
     return (
       <main>
@@ -55,7 +54,8 @@ class MovieData extends Component {
               {movie.release_date.substring(0,4)}
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
-            <h1 className='movie-rating'>{movie.average_rating.toFixed(1)}/10</h1>
+            <h1 className='movie-rating'>Average Rating: {movie.average_rating.toFixed(1)}/10</h1>
+            <h1 className='movie-rating'>My Rating: {myRating}</h1>
             <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
