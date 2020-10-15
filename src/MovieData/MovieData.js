@@ -66,6 +66,4 @@ class MovieData extends Component {
   }
 }
 
-
-
 export default MovieData;
