@@ -9,6 +9,7 @@ import Header from '../Header/Header.js';
 import MovieData from '../MovieData/MovieData.js';
 import Login from '../Login/Login.js'
 import ShowPage from '../ShowPage/ShowPage.js'
+import { getRatings} from '../apiFetch.js'
 
 // import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
@@ -23,6 +24,7 @@ class App extends Component {
       currentUser: '',
       userId: 0,
       loginStatus: false,
+      myRatings: [],
     }
   }
 
@@ -47,6 +49,13 @@ class App extends Component {
     if (!this.state.user.name) {
       this.setState({loginStatus: true})
     }
+  }
+
+  getUserRatings = () => {
+    console.log('getUserRatings IS RUNNING')
+    let id = this.state.userId;
+    getRatings(id)
+    .then(data => this.setState({ myRatings: data.ratings }))
   }
 
   render = () => {
