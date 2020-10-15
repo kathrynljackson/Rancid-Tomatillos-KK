@@ -33,7 +33,6 @@ class Login extends Component {
     .then(response => {
       console.log(response)
       return response})
-    //.then(() => this.clearInputs())
     .then(data => {
       if (data.user) {
         this.setState({loggedIn: true});
@@ -43,23 +42,13 @@ class Login extends Component {
       console.log("SCOTT", data);
     })
     .then(data => this.props.setCurrentUser(data))
-
-
-
-    // .then(this.resetLoggedInState())
     .catch(error => console.log('Not fetching user data'))
   }
-  // console.log('login handler is running', this.state.loggedIn);
 
-  // .then(data => this.setState({ movies : data.movies }))
 
 
 
   render() {
-    // if (this.state.loggedIn === true) {
-    //   return <Redirect to='/movie' />
-    // }
-
     return (
       <article className="display-box">
         <form className="login-form">
