@@ -1,13 +1,5 @@
-// const mainUrl = 'https://rancid-tomatillos.herokuapp.com/api/v2'
-//
-// export const getMovies = () => {
-//   return fetch(`${mainUrl}/movies`)
-//     .then(response => response.json())
-// }
-
 
   export const movieDataFetch = ()  => {
-    console.log('here3')
     return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
     .then(response => response.json())
 
@@ -26,13 +18,30 @@
         })
       })
       .then(response => response.json())
-      // .then(response => console.log(response))
       .catch(err => console.log(err))
     }
 
   export const getOneMovie = (id) => {
     return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then(response => response.json())
-      // .then(console.log('NOW FETCHING SINGLE MOVIE DATA'))
-      // .catch(err => console.log('ERROR IN GETONEMOVIE'))
   }
+
+  export const getRatings = (id) => {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`)
+      .then(response => response.json())
+  }
+
+  export const postRatings = (id, movie_id, rating) => {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          movie_id: movie_id,
+          rating: rating
+        })
+      })
+      .then(response => response.json())
+      .catch(err => console.log(err))
+    }
