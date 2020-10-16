@@ -45,3 +45,4 @@
       .then(response => response.json())
       .catch(err => console.log(err))
     }
+    //parse Int the rating

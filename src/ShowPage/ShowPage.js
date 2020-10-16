@@ -20,7 +20,7 @@ class ShowPage extends Component {
       runtime: 0,
       tagline: '',
     }
-    console.log('props', props)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount(userId, movieId, ratings) {
@@ -32,9 +32,12 @@ class ShowPage extends Component {
 
   movieRatingsData(userId, movieId, ratings) {
     postRatings(userId, movieId, ratings)
-    .then(getRatings(userId))
+    .then((data) => getRatings(userId))
     .catch((error => console.log(error)))
   }
+  //using them as params not arguments
+  //.then needs to be an annon function
+  //data down actions up
 
 
   singleMovieData = (data) => {

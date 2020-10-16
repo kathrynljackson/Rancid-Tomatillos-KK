@@ -69,7 +69,7 @@ class App extends Component {
           <MovieData />
         </Route>
         <Route exact path='/login' >
-          <Login />
+          <h1>HELLO</h1>
         </Route>
         <Route path='/movie' >
           <Header userMessage={welcomeMessage} />
