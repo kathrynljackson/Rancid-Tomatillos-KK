@@ -21,16 +21,18 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentUser: '',
-      userId: 0,
+      user: {},
       loginStatus: false,
       myRatings: [],
     }
   }
 
 
-  setCurrentUser = (data) => {
-    this.setState({ currentUser: data.user.name, userID: data.user.id, loginStatus: true})
+  setCurrentUser = (newUser) => {
+    console.log('helllllllooooooooooooo')
+    this.setState({ user: newUser})
+    this.fetchUserRatings(this.state.user.id)
+
   }
 
   userMessage = () => {
@@ -51,11 +53,11 @@ class App extends Component {
     }
   }
 
-  getUserRatings = () => {
+  getUserRatings = (id) => {
     console.log('getUserRatings IS RUNNING')
-    let id = this.state.userId;
     getRatings(id)
     .then(data => this.setState({ myRatings: data.ratings }))
+    .catch(error => this.setState({ error }))
   }
 
   render = () => {
@@ -73,11 +75,15 @@ class App extends Component {
           <Header userMessage={welcomeMessage} />
           <MovieData />
         </Route>
-        <Route path='/showpage/:id'
-        render={(props) =>
-          <ShowPage {...props} />}
-          />
+        <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} userId={this.state.user.id}/> }
+        />
 
+        <Route exact path='/showpage/:movie_id'
+        render={({ match }) => {
+          const { movie_id } = match.params;
+          return <ShowPage movieID={movie_id} movieRatings={this.state.myRatings} user={this.state.user} getUserRatings={this.getUserRatings} />
+        }}
+        />
       </main>
     )
   }

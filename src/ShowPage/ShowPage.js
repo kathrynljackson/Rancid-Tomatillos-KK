@@ -1,12 +1,13 @@
 import React from 'react';
 import { Component } from 'react';
-import { getOneMovie } from '../apiFetch.js'
+import { getOneMovie, postRatings, getRatings } from '../apiFetch.js'
 
 class ShowPage extends Component {
   constructor(props) {
     super(props);
+    console.log("PROPS", props)
     this.state = {
-      id: Number(this.props.match.params.id),
+      id: this.props.movieID,
       title: '',
       poster_path: '',
       backdrop_path: '',
@@ -22,10 +23,17 @@ class ShowPage extends Component {
     console.log('props', props)
   }
 
-  componentDidMount() {
+  componentDidMount(userId, movieId, ratings) {
     getOneMovie(this.state.id)
       .then((data) => this.singleMovieData(data.movie))
+      .then(this.movieRatingsData(userId, movieId, ratings))
       .catch((error) => console.log(error))
+  }
+
+  movieRatingsData(userId, movieId, ratings) {
+    postRatings(userId, movieId, ratings)
+    .then(getRatings(userId))
+    .catch((error => console.log(error)))
   }
 
 
@@ -48,8 +56,8 @@ class ShowPage extends Component {
 
 
     handleChange = (event) => {
-      console.log('RESETTING USER RATING')
       this.setState({user_rating: parseInt(event.target.value)});
+      console.log('RESETTING USER RATING')
     }
 
 

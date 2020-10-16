@@ -39,9 +39,8 @@ class Login extends Component {
       } else {
         this.setState({loggedIn: false})
       }
-      console.log("SCOTT", data);
     })
-    .then(data => this.props.setCurrentUser(data))
+    // .then(data => this.props.setCurrentUser(data.user))
     .catch(error => console.log('Not fetching user data'))
   }
 
@@ -106,8 +105,8 @@ class Login extends Component {
 
 export default Login;
 
-Login.propTypes = {
-  setCurrentUser: PropTypes.func.isRequired,
-}
+// Login.propTypes = {
+//   setCurrentUser: PropTypes.func.isRequired,
+// }
 
 // A user’s login session information: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
