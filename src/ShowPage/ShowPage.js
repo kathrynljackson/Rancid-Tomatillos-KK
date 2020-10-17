@@ -27,23 +27,18 @@ class ShowPage extends Component {
     getOneMovie(this.state.id)
       .then((data) => this.singleMovieData(data.movie))
       // .then(this.movieRatingsData(userId, movieId, ratings))
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error));
   }
 
   postNewRating = (event) =>  {
     event.preventDefault();
     console.log('postNewRating IS RUNNING')
-    console.log('userid',this.props.user.id)
-    console.log('movieid', parseInt(this.props.movieID))
-    console.log('user rating',this.state.user_rating)
     postRatings(this.props.user.id, parseInt(this.props.movieID), this.state.user_rating)
+      .then(() => getRatings(this.props.user.id))
       .then(response => console.log(response))
-    // .then(() => getRatings(this.props.user.id))
       .catch((error => console.log(error)))
   }
-  //using them as params not arguments
-  //.then needs to be an annon function
-  //data down actions up
+  //THIS IS WORKING ^^^^
 
 
   singleMovieData = (data) => {
