@@ -37,7 +37,9 @@ class Login extends Component {
       // .then(data => this.props.setCurrentUser(data.user))
     .then(data => {
       if (data.user) {
+        console.log("MATT", data.user)
         this.setState({loggedIn: true});
+        this.props.setUser(data.user)
       } else {
         this.setState({loggedIn: false})
       }
