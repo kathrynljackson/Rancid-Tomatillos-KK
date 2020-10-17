@@ -73,7 +73,7 @@ class App extends Component {
         </Route>
         <Route path='/movie' >
           <Header userMessage={welcomeMessage} />
-          <MovieData />
+          <MovieData user={this.state.user}/>
         </Route>
         <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} userId={this.state.user.id}/> }
         />
