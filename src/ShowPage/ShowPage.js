@@ -26,14 +26,20 @@ class ShowPage extends Component {
   componentDidMount(userId, movieId, ratings) {
     getOneMovie(this.state.id)
       .then((data) => this.singleMovieData(data.movie))
-      .then(this.movieRatingsData(userId, movieId, ratings))
+      // .then(this.movieRatingsData(userId, movieId, ratings))
       .catch((error) => console.log(error))
   }
 
-  movieRatingsData(userId, movieId, ratings) {
-    postRatings(userId, movieId, ratings)
-    .then((data) => getRatings(userId))
-    .catch((error => console.log(error)))
+  postNewRating = (event) =>  {
+    event.preventDefault();
+    console.log('postNewRating IS RUNNING')
+    console.log('userid',this.props.user.id)
+    console.log('movieid', parseInt(this.props.movieID))
+    console.log('user rating',this.state.user_rating)
+    postRatings(this.props.user.id, parseInt(this.props.movieID), this.state.user_rating)
+      .then(response => console.log(response))
+    // .then(() => getRatings(this.props.user.id))
+      .catch((error => console.log(error)))
   }
   //using them as params not arguments
   //.then needs to be an annon function
@@ -62,6 +68,8 @@ class ShowPage extends Component {
       this.setState({user_rating: parseInt(event.target.value)});
       console.log('RESETTING USER RATING')
     }
+
+
 
 
   render() {
@@ -117,7 +125,7 @@ class ShowPage extends Component {
                 <option value="10">10</option>
               </select>
             </label>
-            <input type="submit" value="Submit" />
+            <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
           </form>
 
         </section>
