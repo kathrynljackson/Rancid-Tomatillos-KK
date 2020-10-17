@@ -1,12 +1,13 @@
 import React from 'react';
 import { Component } from 'react';
-import { getOneMovie } from '../apiFetch.js'
+import { getOneMovie, postRatings, getRatings } from '../apiFetch.js'
 
 class ShowPage extends Component {
   constructor(props) {
     super(props);
+    console.log("PROPS", props)
     this.state = {
-      id: Number(this.props.match.params.id),
+      id: this.props.movieID,
       title: '',
       poster_path: '',
       backdrop_path: '',
@@ -19,14 +20,25 @@ class ShowPage extends Component {
       runtime: 0,
       tagline: '',
     }
-    console.log('props', props)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount(userId, movieId, ratings) {
     getOneMovie(this.state.id)
       .then((data) => this.singleMovieData(data.movie))
-      .catch((error) => console.log(error))
+      // .then(this.movieRatingsData(userId, movieId, ratings))
+      .catch((error) => console.log(error));
   }
+
+  postNewRating = (event) =>  {
+    event.preventDefault();
+    console.log('postNewRating IS RUNNING')
+    postRatings(this.props.user.id, parseInt(this.props.movieID), this.state.user_rating)
+      .then(() => getRatings(this.props.user.id))
+      .then(response => console.log(response))
+      .catch((error => console.log(error)))
+  }
+  //THIS IS WORKING ^^^^
 
 
   singleMovieData = (data) => {
@@ -48,9 +60,11 @@ class ShowPage extends Component {
 
 
     handleChange = (event) => {
-      console.log('RESETTING USER RATING')
       this.setState({user_rating: parseInt(event.target.value)});
+      console.log('RESETTING USER RATING')
     }
+
+
 
 
   render() {
@@ -106,7 +120,7 @@ class ShowPage extends Component {
                 <option value="10">10</option>
               </select>
             </label>
-            <input type="submit" value="Submit" />
+            <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
           </form>
 
         </section>
