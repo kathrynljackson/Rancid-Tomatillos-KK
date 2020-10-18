@@ -1,6 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 import { getOneMovie, postRatings, getRatings } from '../apiFetch.js'
+import { NavLink } from 'react-router-dom'
+
 
 class ShowPage extends Component {
   constructor(props) {
@@ -121,6 +123,7 @@ class ShowPage extends Component {
               </select>
             </label>
             <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
+            <NavLink to='/movie'>BACK</NavLink>
           </form>
 
         </section>
