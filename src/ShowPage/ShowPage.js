@@ -19,6 +19,8 @@ class ShowPage extends Component {
       revenue: 0,
       runtime: 0,
       tagline: '',
+      allRatings: [],
+      user_rating: 'x',
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -28,6 +30,9 @@ class ShowPage extends Component {
       .then((data) => this.singleMovieData(data.movie))
       // .then(this.movieRatingsData(userId, movieId, ratings))
       .catch((error) => console.log(error));
+    getRatings(this.props.user.id)
+    // .then(response => console.log(response))
+    .then((data) => this.singleMovieRating(data))
   }
 
   postNewRating = (event) =>  {
@@ -39,6 +44,23 @@ class ShowPage extends Component {
       .catch((error => console.log(error)))
   }
   //THIS IS WORKING ^^^^
+
+  singleMovieRating = (data) => {
+    this.setState({ allRatings: data })
+    console.log('SINGLEMOVIERATING RUNNING', this.state.allRatings.ratings);
+    this.displaySingleMovieRating(this.state.allRatings.ratings);
+  }
+
+  displaySingleMovieRating = (array) => {
+    if (this.props.user.id > 0) {
+      let ratingToDisplay = array.find(rating => {
+        return rating.movie_id == this.state.id;
+      })
+      console.log("This movie's rating is: ", ratingToDisplay)
+      console.log("This movie's ACTUAL rating is: ", ratingToDisplay.rating)
+      this.setState({ user_rating: ratingToDisplay.rating})
+    }
+  }
 
 
   singleMovieData = (data) => {
