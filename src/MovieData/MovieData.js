@@ -92,7 +92,8 @@ class MovieData extends Component {
     // let myRating = this.state.userRating;
 
 
-    console.log("AAAAAA", this.state.movies)
+
+
     // console.log("1", this.state.movies.movieRating)
     // console.log("S", this.state.movies[0].movieRating)
 
@@ -104,6 +105,13 @@ class MovieData extends Component {
       <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
         const thisID = movie.id;
+        let showUserRating;
+        console.log("AAAAAA", this.state.movies)
+        if (movie.movieRating) {
+          showUserRating = movie.movieRating.rating
+        } else {
+          showUserRating = 0
+        }
         return (
           <section className='movie-card' key={index}>
             <h1 className='movie-title Apps' key={movie.title}>
@@ -114,7 +122,7 @@ class MovieData extends Component {
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>Average Rating: {movie.average_rating.toFixed(1)}/10</h1>
-            <h1 className='movie-rating' >My Rating: {}</h1>
+            <h1 className='movie-rating' >My Rating: {showUserRating}</h1>
             <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
