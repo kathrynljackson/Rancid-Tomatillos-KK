@@ -90,7 +90,7 @@ class ShowPage extends Component {
               <p className='single-movie-tagline'>{this.state.tagline}</p>
               <p className='single-movie-release-date'><a className='single-movie-info'>Release Date:</a> {this.state.release_date}</p>
               <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {this.state.average_rating.toFixed(1)}/10</p>
-              <p className='user-movie-rating' style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}><a className='single-movie-info'>My Rating:</a> {this.state.user_rating}/10</p>
+              <p className='user-movie-rating' ><a className='single-movie-info'>My Rating:</a> {this.state.user_rating}/10</p>
               <p className='single-movie-genre'><a className='single-movie-info'>Genre(s):</a> {movieGenres}</p>
               <p className='single-movie-budget'><a className='single-movie-info'>Budget:</a> ${this.state.budget.toLocaleString()}</p>
               <p className='single-movie-revenue'><a className='single-movie-info'>Revenue:</a> ${this.state.revenue.toLocaleString()}</p>

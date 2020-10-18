@@ -5,7 +5,7 @@ import Header from '../Header/Header.js';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { movieDataFetch } from '../apiFetch.js'
-//import { getRatings } from '../apiFetch.js'
+import { getRatings } from '../apiFetch.js'
 
 class MovieData extends Component {
   constructor(props) {
@@ -17,14 +17,17 @@ class MovieData extends Component {
     };
   }
 
-  componentDidMount() {
-    movieDataFetch()
-      .then(response => {
-        return response
-      })
-      .then(data => {this.setState({ movies : data.movies })
-      })
-      .catch(error => this.setState({ error }))
+  async componentDidMount() {
+
+    let data = await movieDataFetch()
+    console.log("DATA", data)
+
+    let rating = await getRatings(this.props.user.id)
+    console.log("RATING", rating)
+
+      // })
+      // .catch(error => this.setState({ error }))
+      this.setState({ movies : data.movies })
   }
 
   // setUserRating(){
@@ -39,6 +42,8 @@ class MovieData extends Component {
 
   render() {
     let myRating = this.state.userRating;
+
+    console.log("AAAAAA", this.state.movies)
     // this.eventHandler()
     return (
       <main>
@@ -55,7 +60,7 @@ class MovieData extends Component {
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>Average Rating: {movie.average_rating.toFixed(1)}/10</h1>
-            <h1 className='movie-rating' style={{display: this.props.user ? 'block' : 'none' }}>My Rating: {myRating}</h1>
+            <h1 className='movie-rating' >My Rating: {myRating}</h1>
             <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
