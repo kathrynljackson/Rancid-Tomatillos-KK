@@ -21,6 +21,8 @@ class ShowPage extends Component {
       revenue: 0,
       runtime: 0,
       tagline: '',
+      allRatings: [],
+      user_rating: 'x',
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -30,6 +32,9 @@ class ShowPage extends Component {
       .then((data) => this.singleMovieData(data.movie))
       // .then(this.movieRatingsData(userId, movieId, ratings))
       .catch((error) => console.log(error));
+    getRatings(this.props.user.id)
+    // .then(response => console.log(response))
+    .then((data) => this.singleMovieRating(data))
   }
 
   postNewRating = (event) =>  {
@@ -41,6 +46,23 @@ class ShowPage extends Component {
       .catch((error => console.log(error)))
   }
   //THIS IS WORKING ^^^^
+
+  singleMovieRating = (data) => {
+    this.setState({ allRatings: data })
+    console.log('SINGLEMOVIERATING RUNNING', this.state.allRatings.ratings);
+    this.displaySingleMovieRating(this.state.allRatings.ratings);
+  }
+
+  displaySingleMovieRating = (array) => {
+    if (this.props.user.id > 0) {
+      let ratingToDisplay = array.find(rating => {
+        return rating.movie_id == this.state.id;
+      })
+      console.log("This movie's rating is: ", ratingToDisplay)
+      console.log("This movie's ACTUAL rating is: ", ratingToDisplay.rating)
+      this.setState({ user_rating: ratingToDisplay.rating})
+    }
+  }
 
 
   singleMovieData = (data) => {
@@ -90,7 +112,7 @@ class ShowPage extends Component {
               <p className='single-movie-tagline'>{this.state.tagline}</p>
               <p className='single-movie-release-date'><a className='single-movie-info'>Release Date:</a> {this.state.release_date}</p>
               <p className='single-movie-rating'><a className='single-movie-info'>Average Rating:</a> {this.state.average_rating.toFixed(1)}/10</p>
-              <p className='user-movie-rating' ><a className='single-movie-info'>My Rating:</a> {this.state.user_rating}/10</p>
+              <p className='user-movie-rating' style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}><a className='single-movie-info'>My Rating:</a> {this.state.user_rating}/10</p>
               <p className='single-movie-genre'><a className='single-movie-info'>Genre(s):</a> {movieGenres}</p>
               <p className='single-movie-budget'><a className='single-movie-info'>Budget:</a> ${this.state.budget.toLocaleString()}</p>
               <p className='single-movie-revenue'><a className='single-movie-info'>Revenue:</a> ${this.state.revenue.toLocaleString()}</p>
