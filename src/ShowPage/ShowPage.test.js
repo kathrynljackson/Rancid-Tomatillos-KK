@@ -13,12 +13,12 @@ describe('ShowPage', () => {
   })
 
 
-  it('should render movie info', () => {
-    render(<ShowPage
-      />)
-
-    expect(screen.getByText('Rotten Tomatillos')).toBeInTheDocument()
-  })
+  // it('should render movie info', () => {
+  //   render(<ShowPage
+  //     />)
+  //
+  //   expect(screen.getByText('Rotten Tomatillos')).toBeInTheDocument()
+  // })
 })
 
 // render(<Card

@@ -13,23 +13,34 @@ describe('Login', () => {
   })
 
 
-  it('should render a input text', () => {
-    render(<Login />)
+  it('should render input text', () => {
+    const aUser = {}
+    const emailInput = screen.getByText('Email:')
+    const passwordInput = screen.getByText('Password:')
 
-    expect(screen.getByText('Email:')).toBeInTheDocument()
-    expect(screen.getByText('Password:')).toBeInTheDocument()
+    render(<Login
+      setUser={jest.fn()}
+      userId={aUser}/>)
+
+    expect(emailInput).toBeInTheDocument()
+    expect(passwordInput).toBeInTheDocument()
   })
   //test there is a button with text submit in it
 
   it('should have a submit button', () => {
-    render(<Login />)
+    render(<Login
+      setUser={this.setCurrentUser}
+      userId={aUser}
+      />)
 
-    expect(screen.getByText('Submit')).toBeInTheDocument()
+    expect(screen.getByRole('button')
   })
 
   it('when submit is clicked loginHandler is called', () => {
     Login.loginHandler = jest.fn();
-    render(<Login />)
+    render(<Login
+      setUser={this.setCurrentUser}
+      userId={aUser}/>)
 
     userEvent.click(screen.getByText('Submit'))
     expect(Login.loginHandler).toHaveBeenCalledTimes(1)
