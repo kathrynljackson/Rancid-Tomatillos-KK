@@ -1,6 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 import { getOneMovie, postRatings, getRatings } from '../apiFetch.js'
+import { NavLink } from 'react-router-dom'
+
 
 class ShowPage extends Component {
   constructor(props) {
@@ -125,7 +127,7 @@ class ShowPage extends Component {
 
           </section>
 
-          <form onSubmit={this.handleSubmit}>
+          <form style={{ display: this.props.user.id > 0 ? 'block' : 'none' }} onSubmit={this.handleSubmit}>
             <label>
               Rate this Movie:
               <select value = {this.state.user_rating} onChange={this.handleChange}>
@@ -143,6 +145,7 @@ class ShowPage extends Component {
               </select>
             </label>
             <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
+            <NavLink to='/movie'>BACK</NavLink>
           </form>
 
         </section>
