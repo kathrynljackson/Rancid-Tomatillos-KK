@@ -72,7 +72,7 @@ class Login extends Component {
             />
           </div>
           <button onClick={this.loginHandler}>Submit</button>
-          // {this.state.loggedIn && <Redirect to='/movie' />}
+          // {this.state.loggedIn && <Redirect to='/' />}
         </form>
       </article>
     )

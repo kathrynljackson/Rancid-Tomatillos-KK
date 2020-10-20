@@ -64,21 +64,21 @@ class App extends Component {
     let welcomeMessage = this.userMessage()
     return (
       <main className='App'>
-        <Route path='/begin'>
+        <Route exact path='/'>
           <Header />
           <MovieData user={this.state.user}/>
         </Route>
         <Route exact path='/login' >
           <h1>HELLO</h1>
         </Route>
-        <Route path='/movie' >
+        <Route exact path='/movies' >
           <Header userMessage={welcomeMessage} />
           <MovieData user={this.state.user}/>
         </Route>
         <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} userId={this.state.user.id}/> }
         />
 
-        <Route exact path='/showpage/:movie_id'
+        <Route exact path='/movies/:movie_id'
         render={({ match }) => {
           const { movie_id } = match.params;
           return <ShowPage movieID={movie_id} movieRatings={this.state.myRatings} user={this.state.user} getUserRatings={this.getUserRatings} />

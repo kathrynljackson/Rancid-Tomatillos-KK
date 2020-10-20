@@ -65,7 +65,7 @@ class MovieData extends Component {
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>Average Rating: {movie.average_rating.toFixed(1)}/10</h1>
             <h1 className='movie-rating' style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}>My Rating: {showUserRating}</h1>
-            <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
+            <Link to={'/movies/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
       })}

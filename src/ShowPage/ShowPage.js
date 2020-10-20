@@ -172,7 +172,7 @@ class ShowPage extends Component {
             </label>
             <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
             <button type="submit" onClick={this.editRating}>EDIT</button>
-            <NavLink to='/movie'>BACK</NavLink>
+            <NavLink to='/'>BACK</NavLink>
           </form>
 
         </section>
