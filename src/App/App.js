@@ -75,7 +75,7 @@ class App extends Component {
           <Header userMessage={welcomeMessage} />
           <MovieData user={this.state.user}/>
         </Route>
-        <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} userId={this.state.user.id}/> }
+        <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} /> }
         />
 
         <Route exact path='/movies/:movie_id'

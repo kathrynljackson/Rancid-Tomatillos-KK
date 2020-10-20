@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { withRouter, Link, Redirect } from 'react-router-dom';
 import { Component } from 'react';
@@ -5,12 +6,13 @@ import { Component } from 'react';
 import { postData } from '../apiFetch.js'
 import App from '../App/App.js';
 
-import PropTypes from 'prop-types'
+
 
 
 class Login extends Component {
   constructor(props) {
     super(props)
+    console.log("LOGINPROPS", props)
     this.state = {
       email: '',
       password: '',
@@ -109,8 +111,8 @@ class Login extends Component {
 
 export default Login;
 
-// Login.propTypes = {
-//   setCurrentUser: PropTypes.func.isRequired,
-// }
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+}
 
 // A user’s login session information: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
