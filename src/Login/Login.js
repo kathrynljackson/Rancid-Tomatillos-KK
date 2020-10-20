@@ -12,7 +12,6 @@ import App from '../App/App.js';
 class Login extends Component {
   constructor(props) {
     super(props)
-    console.log("LOGINPROPS", props)
     this.state = {
       email: '',
       password: '',

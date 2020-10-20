@@ -6,6 +6,7 @@ import { Link, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { movieDataFetch } from '../apiFetch.js'
 import { getRatings } from '../apiFetch.js'
+import PropTypes from 'prop-types';
 
 class MovieData extends Component {
   constructor(props) {
@@ -76,3 +77,7 @@ class MovieData extends Component {
 }
 
 export default MovieData;
+
+MovieData.propTypes = {
+  userId: PropTypes.object,
+}

@@ -2,12 +2,13 @@ import React from 'react';
 import { Component } from 'react';
 import { getOneMovie, postRatings, getRatings, deleteRating } from '../apiFetch.js'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 
 class ShowPage extends Component {
   constructor(props) {
     super(props);
-    console.log("PROPS", props)
+      console.log("SHOWPAGEDATAPROPS", props)
     this.state = {
       id: this.props.movieID,
       title: '',
@@ -57,7 +58,7 @@ class ShowPage extends Component {
       if (this.props.user.id > 0 && this.state.id >0) {
         let ratingToDisplay = array.find(rating => {
           return rating.movie_id == this.state.id;
-          
+
         })
         if(ratingToDisplay){
         this.setState({ user_rating: ratingToDisplay.rating})
@@ -185,3 +186,10 @@ class ShowPage extends Component {
 
 
 export default ShowPage;
+
+ShowPage.propTypes = {
+  movieID: PropTypes.string,
+  movieRatings: PropTypes.array,
+  user: PropTypes.object,
+  getUserRatings: PropTypes.func,
+}
