@@ -18,29 +18,19 @@ class MovieData extends Component {
     };
   }
 
-  // async componentDidMount() {
-  //   let data = await movieDataFetch()
-  //   let ratings = await getRatings(this.props.user.id)
-  //   console.log("DATA", data)
-  //   console.log("RATING", ratings)
-  //   if (this.props.user.id > 0) {
-  //     return  movieMatch = ratings.find(rating => {
-  //       return movie.id === rating.movie_id
-  //     })
-  //   })
-  // }
 
   async componentDidMount() {
     let data = await movieDataFetch()
-    let ratings = await getRatings(this.props.user.id)
+    .then(data => this.setState({ movies: data.movies }))
     .catch((error) => console.log(error));
     console.log("DATA", data)
-    console.log("RATING", ratings)
+    //console.log("RATING", ratings)
     // .catch(error => console.log('DEATH'))
 
 
     if (this.props.user.id > 0) {
-      const newMovieMatch = data.movies.map(movie => {
+      let ratings = await getRatings(this.props.user.id)
+      const newMovieMatch = this.state.movies.map(movie => {
         let movieMatch = ratings.ratings.find(info => {
           return info.movie_id == movie.id
         })
@@ -52,61 +42,13 @@ class MovieData extends Component {
       }
   }
 
-  //   aysnc componentDidMount() {
-  //   await movieDataFetch()
-  //   .then((data) => this.setState({ movies : data.movies })
-  //   .then(() => await getRatings(this.props.user.id))
-  //
-  // }
-
-
-
-
-
-
-
-
-
-      // .catch(error => this.setState({ error }))
-
-
-      //if movie has not been rated the default should be zero
-      //combine the two arrays together and set the state based on the two arrays
-
-
-
-
-
-
-  // setUserRating(){
-  //   getRatings(userIDFrom another class)
-  //   .then(response => {
-  //     return response
-  //   })
-  //   .then(data => {this.setState({ movies : data.movies })
-  //   })
-  //   .catch(error => this.setState({ error }))
-  // }
-
   render() {
-    // let myRating = this.state.userRating;
-
-
-
-
-    // console.log("1", this.state.movies.movieRating)
-    // console.log("S", this.state.movies[0].movieRating)
-
-    // console.log("LOG", this.state.movies.movieRating.rating)
-    // let specificRating = this.state.movies ? this.state.movies.movieRating.rating : 0
-    // this.eventHandler()
     return (
       <main>
       <div className='movie-cards'>
         {this.state.movies.map((movie, index) => {
         const thisID = movie.id;
         let showUserRating;
-        console.log("AAAAAA", this.state.movies)
         if (movie.movieRating) {
           showUserRating = movie.movieRating.rating
         } else {
@@ -122,7 +64,7 @@ class MovieData extends Component {
             </p>
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>Average Rating: {movie.average_rating.toFixed(1)}/10</h1>
-            <h1 className='movie-rating' >My Rating: {showUserRating}</h1>
+            <h1 className='movie-rating' style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}>My Rating: {showUserRating}</h1>
             <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
