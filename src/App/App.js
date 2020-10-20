@@ -107,11 +107,11 @@ class App extends Component {
 //   return (
 //     <main>
 //         <Switch>
-//             <Route exact path="/" render= {() => { 
+//             <Route exact path="/" render= {() => {
 //               return <Login />;}
 //             }
 //               exact />
-//             <Route path="/movie" render= {() => { 
+//             <Route path="/movie" render= {() => {
 //               return <MovieData />;}
 //             }
 //             exact />
