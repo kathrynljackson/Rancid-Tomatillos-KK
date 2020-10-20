@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { getOneMovie, postRatings, getRatings } from '../apiFetch.js'
+import { getOneMovie, postRatings, getRatings, deleteRating } from '../apiFetch.js'
 import { NavLink } from 'react-router-dom'
 
 
@@ -54,15 +54,13 @@ class ShowPage extends Component {
   }
 
   displaySingleMovieRating = (array) => {
-    if (this.props.user.id > 0) {
-      let ratingToDisplay = array.find(rating => {
-        return rating.movie_id == this.state.id;
-      })
-      console.log("This movie's rating is: ", ratingToDisplay)
-      console.log("This movie's ACTUAL rating is: ", ratingToDisplay.rating)
-      this.setState({ user_rating: ratingToDisplay.rating})
+      if (this.props.user.id > 0 && this.state.id >0) {
+        let ratingToDisplay = array.find(rating => {
+          return rating.movie_id == this.state.id;
+        })
+        this.setState({ user_rating: ratingToDisplay.rating})
+      }
     }
-  }
 
 
   singleMovieData = (data) => {
@@ -80,6 +78,31 @@ class ShowPage extends Component {
       tagline: data.tagline,
     })
   }
+
+  getCurrentUserRating() {
+  let currentRating = this.state.allRatings.ratings.find(rating => {
+    return (rating.movie_id == this.state.id)
+  })
+  return currentRating
+}
+
+  editRating = (event) => {
+    event.preventDefault();
+    let currentMovie = this.state.allRatings.ratings.find(rating => {
+      return (this.state.id == rating.movie_id)
+    })
+    console.log("CCC", currentMovie)
+    const userId = this.props.user.id
+    const ratingId = currentMovie.id
+    deleteRating(userId, ratingId)
+    getRatings(userId)
+    this.getCurrentUserRating()
+    this.setState({user_rating: 0})
+  }
+
+
+
+
 
 
 
@@ -145,6 +168,7 @@ class ShowPage extends Component {
               </select>
             </label>
             <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
+            <button type="submit" onClick={this.editRating}>EDIT</button>
             <NavLink to='/movie'>BACK</NavLink>
           </form>
 
