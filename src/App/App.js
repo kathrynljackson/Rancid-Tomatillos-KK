@@ -66,7 +66,7 @@ class App extends Component {
       <main className='App'>
         <Route path='/begin'>
           <Header />
-          <MovieData />
+          <MovieData user={this.state.user}/>
         </Route>
         <Route exact path='/login' >
           <h1>HELLO</h1>
