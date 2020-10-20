@@ -57,8 +57,9 @@ class ShowPage extends Component {
       if (this.props.user.id > 0 && this.state.id >0) {
         let ratingToDisplay = array.find(rating => {
           return rating.movie_id == this.state.id;
+          this.setState({ user_rating: ratingToDisplay.rating})
         })
-        this.setState({ user_rating: ratingToDisplay.rating})
+        
       }
     }
 
@@ -97,7 +98,7 @@ class ShowPage extends Component {
     deleteRating(userId, ratingId)
     getRatings(userId)
     this.getCurrentUserRating()
-    this.setState({user_rating: 0})
+    this.setState({user_rating: 'x'})
   }
 
 
