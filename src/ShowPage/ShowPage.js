@@ -22,7 +22,7 @@ class ShowPage extends Component {
       runtime: 0,
       tagline: '',
       allRatings: [],
-      user_rating: 'x',
+      user_rating: '0',
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -57,9 +57,11 @@ class ShowPage extends Component {
       if (this.props.user.id > 0 && this.state.id >0) {
         let ratingToDisplay = array.find(rating => {
           return rating.movie_id == this.state.id;
-          this.setState({ user_rating: ratingToDisplay.rating})
+          
         })
-        
+        if(ratingToDisplay){
+        this.setState({ user_rating: ratingToDisplay.rating})
+        }
       }
     }
 
@@ -98,7 +100,7 @@ class ShowPage extends Component {
     deleteRating(userId, ratingId)
     getRatings(userId)
     this.getCurrentUserRating()
-    this.setState({user_rating: 'x'})
+    this.setState({user_rating: '0'})
   }
 
 
