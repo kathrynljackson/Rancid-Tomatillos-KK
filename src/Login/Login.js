@@ -19,9 +19,9 @@ class Login extends Component {
     }
   }
 
-  // clearInputs = () => {
-  //   this.setState({email: '', password: ''})
-  // }
+  clearInputs = () => {
+    this.setState({email: '', password: ''})
+  }
 
   updateValue = (event) => {
     this.setState({ [event.target.name]: event.target.value })
@@ -45,6 +45,7 @@ class Login extends Component {
         this.setState({loggedIn: false})
       }
     })
+    .then(() => this.clearInputs())
     // .then(data => this.props.setCurrentUser(data.user))
     .catch(error => console.log('Not fetching user data'))
   }
@@ -78,34 +79,6 @@ class Login extends Component {
       </article>
     )
   }
-
-
-  // resetLoggedInState = () => {
-  //   this.setState({ loggedIn: true }, function () {
-  //     console.log('reset is running 1', this.state.loggedIn);
-  //     this.redirect()
-  //   });
-  //   console.log('reset is running 2', this.state.loggedIn);
-  // }
-
-  // redirect = () => {
-  //   if (this.state.loggedIn = true) {
-  //     return <Redirect to='/movie' />
-  //     console.log('REDIRECT IS RUNNING 1', this.state.loggedIn)
-  //   }
-  //   console.log('REDIRECT IS RUNNING 2', this.state.loggedIn)
-  // }
-
-  // loginHandler = (event) => {
-
-  // both = (event) => {
-  //   console.log('BOTH IS RUNNING', this.state.loggedIn)
-  //   //this.redirect();
-  //   this.loginHandler(event);
-  //   console.log(this.state.login)
-  //
-  // }
-
 }
 
 export default Login;
