@@ -41,6 +41,7 @@ code {
 
 .header-link {
   text-decoration: none;
+  font-family: Bebas Neue;
 }
 
 .header-link:hover {
@@ -210,10 +211,48 @@ input {
   background-color: #f2f2f2;
   padding: 2%;
   border-radius: 3px;
+  font-family: Bebas Neue;
 }
 
 .movie-link:hover {
   font-weight: bold;
+}
+
+.show-page-button {
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  background-color: #f2f2f2;
+  padding: 1%;
+  border-radius: 3px;
+  margin: 1%;
+  font-family: Bebas Neue;
+}
+
+.show-page-button:hover {
+  font-weight: bold;
+}
+
+.back-button {
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  background-color: #f2f2f2;
+  padding: 1%;
+  border: 3px black solid;
+  border-radius: 3px;
+  margin: 1%;
+  font-family: Bebas Neue;
+}
+
+.user-form {
+  font-size: 20px;
+  align-content: center;
+}
+
+.user-form-input {
+  font-size: 20px;
+  align-self: center;
 }
 
 .login-message {
