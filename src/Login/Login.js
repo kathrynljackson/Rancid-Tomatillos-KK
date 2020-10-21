@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react'
-import { withRouter, Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Component } from 'react';
-
 import { postData } from '../apiFetch.js'
-import App from '../App/App.js';
-
-
 
 
 class Login extends Component {
@@ -28,14 +24,11 @@ class Login extends Component {
   }
 
   loginHandler = (event) => {
-
     event.preventDefault();
     postData(this.state.email, this.state.password)
     .then(response => {
       console.log(response)
       return response})
-
-      // .then(data => this.props.setCurrentUser(data.user))
     .then(data => {
       if (data.user) {
         console.log("MATT", data.user)
@@ -46,12 +39,8 @@ class Login extends Component {
       }
     })
     .then(() => this.clearInputs())
-    // .then(data => this.props.setCurrentUser(data.user))
     .catch(error => console.log('Not fetching user data'))
   }
-
-
-
 
   render() {
     return (
@@ -79,6 +68,7 @@ class Login extends Component {
       </article>
     )
   }
+
 }
 
 export default Login;
@@ -86,5 +76,3 @@ export default Login;
 Login.propTypes = {
   setUser: PropTypes.func.isRequired,
 }
-
-// A user’s login session information: {user: {id: 1, name: "Alan", email: "alan@turing.io"}}

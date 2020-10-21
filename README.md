@@ -56,7 +56,7 @@
 
 ## In Action
 
-**Fitness Dashboard**
+**Movie Interation**
 
 ![project page load](https://i.imgur.com/oIX4rKd.gif)
 
