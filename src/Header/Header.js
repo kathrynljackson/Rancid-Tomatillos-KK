@@ -1,15 +1,11 @@
-
 import React from 'react'
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
 class Header extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
-
     }
   }
 
@@ -23,7 +19,6 @@ class Header extends Component {
     )
   }
 }
-
 
 
 export default Header;

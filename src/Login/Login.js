@@ -31,7 +31,6 @@ class Login extends Component {
       return response})
     .then(data => {
       if (data.user) {
-        console.log("MATT", data.user)
         this.setState({loggedIn: true});
         this.props.setUser(data.user)
       } else {

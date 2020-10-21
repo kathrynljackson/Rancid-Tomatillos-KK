@@ -24,7 +24,6 @@ class MovieData extends Component {
     let data = await movieDataFetch()
     .then(data => this.setState({ movies: data.movies }))
     .catch((error) => console.log(error));
-    console.log("DATA", data)
     //console.log("RATING", ratings)
     // .catch(error => console.log('DEATH'))
 
@@ -36,7 +35,6 @@ class MovieData extends Component {
           return info.movie_id == movie.id
         })
         movie.movieRating = movieMatch
-        console.log("MOVE", movie)
         return movie
       })
       this.setState({movies: newMovieMatch})
