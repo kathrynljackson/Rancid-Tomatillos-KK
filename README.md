@@ -56,9 +56,6 @@
 
 ## In Action
 
-**Movie Interation**
-
-![project page load](https://i.imgur.com/oIX4rKd.gif)
 
 ![](https://media.giphy.com/media/59xP75Y0U7gZG46RQj/giphy.gif)
 
