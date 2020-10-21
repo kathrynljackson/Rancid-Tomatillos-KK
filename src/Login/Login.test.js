@@ -1,9 +1,10 @@
-import React from 'react';
-import Login from '../Login/Login.js';
-import apiFetch from '../apiFetch.js';
-import { screen, render, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-//import '@testing-library/jest-dom'
+import React from 'react'
+import Login from '../Login/Login.js'
+import apiFetch from '../apiFetch.js'
+import { screen, render, fireEvent } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import '@testing-library/jest-dom'
+import { postData } from '../apiFetch.js'
 
 
 
@@ -13,37 +14,22 @@ describe('Login', () => {
     expect(true).toEqual(true)
   })
 
+  it('should have two input fields', () => {
+    render(<Login />)
 
-  it('should render input text', () => {
-    const mockSet = jest.fn();
-    const aUser = {};
-    const emailInput = screen.getByText('Email:');
-    const passwordInput =  screen.getByText('Password:');
+    const emailInput = screen.getByText('Email:')
+    const passwordInput = screen.getByText('Password:')
 
-    render(
-      
-      <Login
-      setUser={mockSet}
-      userId={aUser}/>
-    )
-      
-
-    expect(emailInput).toBeInTheDocument()
-    expect(passwordInput).toBeInTheDocument()
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
   })
-  //test there is a button with text submit in it
 
   it('should have a submit button', () => {
-    const mockSet = jest.fn();
-    const aUser = {}
-    render(
-    <Login
-      setUser={mockSet}
-      userId={aUser}
-      />
-     )
+    render(<Login />)
 
-    expect(screen.getByRole('button'))
+    const submitButton = screen.getByRole('button', {name: 'Submit'})
+
+    expect(submitButton).toBeInTheDocument();
   })
 
   it('when submit is clicked loginHandler is called', () => {
@@ -51,30 +37,39 @@ describe('Login', () => {
     const aUser = {}
     Login.loginHandler = jest.fn();
     render(
-      
+
         <Login
       setUser={mockSet}
       userId={aUser}/>
-      
+
   )
     userEvent.click(screen.getByText('Submit'))
     expect(Login.loginHandler).toHaveBeenCalledTimes(1)
   })
+
+
+  it('should check that input is cleared on submit', async() => {
+    const setUser = jest.fn()
+    render(<Login setUser={setUser}
+      />)
+    postData.mockResolvedValue({"email": "greg@turing.io", "id": 72, "name": 'Greg'})
+    const emailInput = await waitFor(() => screen.getByText('Email:'))
+    const passwordInput = screen.getByText('Password:')
+    const submitButton = screen.getByRole('button', {name: 'Submit'})
+
+    expect(emailInput).toBeInTheDocument()
+    expect(passwordInput).toBeInTheDocument()
+    expect(submitButton).toBeInTheDocument()
+
+    fireEvent.change(emailInput, {target: {name: 'email', value: 'something'}})
+    expect(emailInput.value).toEqual('something')
+    fireEvent.change(passwordInput, {target: {name: 'password', value: 'badpassword'}})
+    expect(passwordInput.value).toEqual('badpassword')
+    fireEvent.click(submitButton)
+
+    await waitFor(() => {
+      expect(emailInput.value).toHaveLength(0)
+      expect(passwordInput.value).toHaveLength(0)
+    })
+  })
 })
-
-//If you have no arguments in your component how do you test that a function has been called?
-//loginHandler is a predefined method on the login class
-//How do you mock a method on a react class given that there are no arguments in the component
-
-// it('should invoke removeIdea with the card id when button is clicked', () => {
-//   const fakeRemoveIdea = jest.fn();
-//   render(<Card
-//               id={101}
-//               title="Flavor"
-//               description="Check if this is soda"
-//               removeIdea={fakeRemoveIdea}
-//             />)
-//   userEvent.click(screen.getByText('Delete'));
-//   expect(fakeRemoveIdea).toHaveBeenCalledTimes(1);
-//   expect(fakeRemoveIdea).toHaveBeenCalledWith(101)
-// })

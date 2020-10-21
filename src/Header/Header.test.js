@@ -6,16 +6,26 @@ import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
 
 
-// describe('Login', () => {
+describe('Login', () => {
 
-//   it('Works', () => {
-//     expect(true).toEqual(true)
-//   })
+  it('Works', () => {
+    expect(true).toEqual(true)
+  })
 
 
-//   it('should render header text', () => {
-//     render(<Header />)
+  it('should render header text', () => {
+    render(
+        <Header />)
 
-//     expect(screen.getByText('Rotten Tomatillos')).toBeInTheDocument()
-//   })
-// })
+
+    expect(screen.getByText('Rotten Tomatillos')).toBeInTheDocument()
+  })
+
+  it('should render a link named login', () => {
+    render(
+      <Header />
+    )
+
+    expect(screen.getByText('LOGIN')).toBeInTheDocument()
+  })
+})

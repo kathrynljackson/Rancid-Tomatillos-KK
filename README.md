@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Rancid Tomatillos Paired Project
 
-## Available Scripts
+**Contributors**
 
-In the project directory, you can run:
+[Kathryn Jackson](https://github.com/kathrynljackson), [Katy St Sauveur](https://github.com/krogowsk531)
 
-### `npm start`
+**Project Description**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*A site for rating movies where a user can view information about movies as well as provide their own rating.  By logging in a user can rate movies based on how much they enjoyed watching them.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Installation**
 
-### `npm test`
+**Fork this repository:**
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* https://github.com/kathrynljackson/Rancid-Tomatillos-KK
 
-### `npm run build`
+**Clone your forked repository**
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* `git clone` and the copied URL
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Change into the directory and install the project dependencies**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* `cd` into directory and run `npm install` for dependencies
 
-### `npm run eject`
+**Project Goals**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Create a functioning app by following the spec below
+* Use React and React Router to build the application
+* Write clean code that follows the Single Responsibility Principle
+* Build a strong testing suite with unit, integration and async tests
+* Have a thorough understanding of components, props and state inside of react
+* Successfully fetch and post with given APIs
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Wins**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Working with React in a collaborative environment with a set deadline.
+* Learning React and React Router. This project was started on the first day that we were introduced to React.
+* Have a fully functioning and aesthetically pleasing app according to the project requirements.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Challenges**
 
-## Learn More
+* Testing React, especially integration and async testing.
+* Passing props and calling them correctly.
+* Once router was introduced many tests broke that we were unable to fix.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Programming Languages Used**
 
-### Code Splitting
+* JSX
+* CSS
+* React
+* JavaScript
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**Spec Given**
+  * https://frontend.turing.io/projects/module-3/rancid-tomatillos-v2.html
 
-### Analyzing the Bundle Size
+## In Action
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+**Movie Interation**
 
-### Making a Progressive Web App
+![project page load](https://i.imgur.com/oIX4rKd.gif)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+ **Issues to be Resolved**
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  * Fix failed tests and diving into more testing throughout the different components

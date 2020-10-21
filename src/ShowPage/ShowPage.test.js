@@ -9,7 +9,7 @@ jest.mock('../apiFetch.js')
 describe('ShowPage', () => {
 
   it.skip('should show correct movie content', async () => {
- 
+
     getOneMovie.mockResolvedValue({
       movie: {
         'id': '499932',
@@ -39,9 +39,4 @@ const person = {
 
         expect(titleOfMovie).toBeInTheDocument();
   })
-
-
-
 })
-
-
