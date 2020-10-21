@@ -6,6 +6,7 @@ import { Link, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { movieDataFetch } from '../apiFetch.js'
 import { getRatings } from '../apiFetch.js'
+import PropTypes from 'prop-types';
 
 class MovieData extends Component {
   constructor(props) {
@@ -23,7 +24,6 @@ class MovieData extends Component {
     let data = await movieDataFetch()
     .then(data => this.setState({ movies: data.movies }))
     .catch((error) => console.log(error));
-    console.log("DATA", data)
     //console.log("RATING", ratings)
     // .catch(error => console.log('DEATH'))
 
@@ -35,7 +35,6 @@ class MovieData extends Component {
           return info.movie_id == movie.id
         })
         movie.movieRating = movieMatch
-        console.log("MOVE", movie)
         return movie
       })
       this.setState({movies: newMovieMatch})
@@ -65,7 +64,7 @@ class MovieData extends Component {
             <img className='movie-poster' alt='movie-poster' src={movie.poster_path} />
             <h1 className='movie-rating'>Average Rating: {movie.average_rating.toFixed(1)}/10</h1>
             <h1 className='movie-rating' style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}>My Rating: {showUserRating}</h1>
-            <Link to={'/showpage/'+thisID} className='movie-link'>Movie Details</Link>
+            <Link to={'/movies/'+thisID} className='movie-link'>Movie Details</Link>
           </section>
         )
       })}
@@ -76,3 +75,7 @@ class MovieData extends Component {
 }
 
 export default MovieData;
+
+MovieData.propTypes = {
+  userId: PropTypes.object,
+}

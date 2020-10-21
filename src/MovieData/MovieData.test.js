@@ -9,21 +9,4 @@ describe('MovieData', () => {
   it('Works', () => {
     expect(true).toEqual(true)
   })
-
-  it('should render a movie card', () => {
-
-    
-  })
-
-
 });
-
-// it('should have a description', () => {
-//   render(<Card
-//             id={3}
-//             title="Chunky sweaters for chunky pugs"
-//             description="You gotta"
-//             removeIdea={() => {}}
-//           />)
-//   expect(screen.getByText('You gotta')).toBeInTheDocument()
-// })

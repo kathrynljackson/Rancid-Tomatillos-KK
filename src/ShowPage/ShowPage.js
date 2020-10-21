@@ -2,12 +2,12 @@ import React from 'react';
 import { Component } from 'react';
 import { getOneMovie, postRatings, getRatings, deleteRating } from '../apiFetch.js'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 
 class ShowPage extends Component {
   constructor(props) {
     super(props);
-    console.log("PROPS", props)
     this.state = {
       id: this.props.movieID,
       title: '',
@@ -22,7 +22,7 @@ class ShowPage extends Component {
       runtime: 0,
       tagline: '',
       allRatings: [],
-      user_rating: 'x',
+      user_rating: '0',
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -30,39 +30,35 @@ class ShowPage extends Component {
   componentDidMount(userId, movieId, ratings) {
     getOneMovie(this.state.id)
       .then((data) => this.singleMovieData(data.movie))
-      // .then(this.movieRatingsData(userId, movieId, ratings))
       .catch((error) => console.log(error));
     getRatings(this.props.user.id)
-    // .then(response => console.log(response))
     .then((data) => this.singleMovieRating(data))
   }
 
   postNewRating = (event) =>  {
     event.preventDefault();
-    console.log('postNewRating IS RUNNING')
     postRatings(this.props.user.id, parseInt(this.props.movieID), this.state.user_rating)
       .then(() => getRatings(this.props.user.id))
       .then(response => console.log(response))
       .catch((error => console.log(error)))
   }
-  //THIS IS WORKING ^^^^
 
   singleMovieRating = (data) => {
     this.setState({ allRatings: data })
-    console.log('SINGLEMOVIERATING RUNNING', this.state.allRatings.ratings);
     this.displaySingleMovieRating(this.state.allRatings.ratings);
   }
 
   displaySingleMovieRating = (array) => {
-      if (this.props.user.id > 0 && this.state.id >0) {
-        let ratingToDisplay = array.find(rating => {
-          return rating.movie_id == this.state.id;
-          this.setState({ user_rating: ratingToDisplay.rating})
-        })
-        
+    if (this.props.user.id > 0 && this.state.id >0) {
+      let ratingToDisplay = array.find(rating => {
+        return rating.movie_id == this.state.id;
+
+      })
+      if(ratingToDisplay){
+      this.setState({ user_rating: ratingToDisplay.rating})
       }
     }
-
+  }
 
   singleMovieData = (data) => {
     this.setState({
@@ -81,42 +77,30 @@ class ShowPage extends Component {
   }
 
   getCurrentUserRating() {
-  let currentRating = this.state.allRatings.ratings.find(rating => {
-    return (rating.movie_id == this.state.id)
-  })
-  return currentRating
-}
+    let currentRating = this.state.allRatings.ratings.find(rating => {
+      return (rating.movie_id == this.state.id)
+    })
+    return currentRating
+  }
 
   editRating = (event) => {
     event.preventDefault();
     let currentMovie = this.state.allRatings.ratings.find(rating => {
       return (this.state.id == rating.movie_id)
     })
-    console.log("CCC", currentMovie)
     const userId = this.props.user.id
     const ratingId = currentMovie.id
     deleteRating(userId, ratingId)
     getRatings(userId)
     this.getCurrentUserRating()
-    this.setState({user_rating: 'x'})
+    this.setState({user_rating: '0'})
   }
 
-
-
-
-
-
-
-    handleChange = (event) => {
-      this.setState({user_rating: parseInt(event.target.value)});
-      console.log('RESETTING USER RATING')
-    }
-
-
-
+  handleChange = (event) => {
+    this.setState({user_rating: parseInt(event.target.value)});
+  }
 
   render() {
-    console.log('current movie: ', this.state)
     let imgUrl = this.state.backdrop_path;
     let movieGenres = this.state.genres.map(genre => {
       return <li key={genre}>{genre}</li>;
@@ -148,9 +132,7 @@ class ShowPage extends Component {
           </section>
           <section className='movie-main-bottom'>
             <p className='movie-main-overview'>{this.state.overview}</p>
-
           </section>
-
           <form style={{ display: this.props.user.id > 0 ? 'block' : 'none' }} onSubmit={this.handleSubmit}>
             <label>
               Rate this Movie:
@@ -170,16 +152,20 @@ class ShowPage extends Component {
             </label>
             <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
             <button type="submit" onClick={this.editRating}>EDIT</button>
-            <NavLink to='/movie'>BACK</NavLink>
+            <NavLink to='/'>BACK</NavLink>
           </form>
-
         </section>
       </div>
     )
   }
-
-
 }
 
 
 export default ShowPage;
+
+ShowPage.propTypes = {
+  movieID: PropTypes.string,
+  movieRatings: PropTypes.array,
+  user: PropTypes.object,
+  getUserRatings: PropTypes.func,
+}
