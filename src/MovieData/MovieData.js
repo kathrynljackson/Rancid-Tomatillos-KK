@@ -35,7 +35,7 @@ class MovieData extends Component {
           return info.movie_id == movie.id
         })
         movie.movieRating = movieMatch
-        console.log("MOVE", movie)
+        // console.log("MOVE", movie)
         return movie
       })
       this.setState({movies: newMovieMatch})

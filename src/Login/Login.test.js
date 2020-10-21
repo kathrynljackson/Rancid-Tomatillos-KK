@@ -1,9 +1,10 @@
-import React from 'react'
-import Login from '../Login/Login.js'
-import apiFetch from '../apiFetch.js'
-import { screen, render, fireEvent } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import '@testing-library/jest-dom'
+import React from 'react';
+import Login from '../Login/Login.js';
+import apiFetch from '../apiFetch.js';
+import { screen, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+//import '@testing-library/jest-dom'
+
 
 
 describe('Login', () => {
@@ -14,13 +15,18 @@ describe('Login', () => {
 
 
   it('should render input text', () => {
-    const aUser = {}
-    const emailInput = screen.getByText('Email:')
-    const passwordInput = screen.getByText('Password:')
+    const mockSet = jest.fn();
+    const aUser = {};
+    const emailInput = screen.getByText('Email:');
+    const passwordInput =  screen.getByText('Password:');
 
-    render(<Login
-      setUser={jest.fn()}
-      userId={aUser}/>)
+    render(
+      
+      <Login
+      setUser={mockSet}
+      userId={aUser}/>
+    )
+      
 
     expect(emailInput).toBeInTheDocument()
     expect(passwordInput).toBeInTheDocument()
@@ -28,20 +34,29 @@ describe('Login', () => {
   //test there is a button with text submit in it
 
   it('should have a submit button', () => {
-    render(<Login
-      setUser={this.setCurrentUser}
+    const mockSet = jest.fn();
+    const aUser = {}
+    render(
+    <Login
+      setUser={mockSet}
       userId={aUser}
-      />)
+      />
+     )
 
-    expect(screen.getByRole('button')
+    expect(screen.getByRole('button'))
   })
 
   it('when submit is clicked loginHandler is called', () => {
+    const mockSet = jest.fn();
+    const aUser = {}
     Login.loginHandler = jest.fn();
-    render(<Login
-      setUser={this.setCurrentUser}
-      userId={aUser}/>)
-
+    render(
+      
+        <Login
+      setUser={mockSet}
+      userId={aUser}/>
+      
+  )
     userEvent.click(screen.getByText('Submit'))
     expect(Login.loginHandler).toHaveBeenCalledTimes(1)
   })

@@ -31,13 +31,11 @@ class Login extends Component {
     event.preventDefault();
     postData(this.state.email, this.state.password)
     .then(response => {
-      console.log(response)
       return response})
 
       // .then(data => this.props.setCurrentUser(data.user))
     .then(data => {
       if (data.user) {
-        console.log("MATT", data.user)
         this.setState({loggedIn: true});
         this.props.setUser(data.user)
       } else {

@@ -35,17 +35,16 @@ class App extends Component {
 
   }
 
-  userMessage = () => {
-    if (this.state.loginStatus === true) {
-      return <h2>BLAH</h2>
-    } else {
+  // userMessage = () => {
+  //   if (this.state.user) {
+  //     console.log('MESSAGE', this.state.currentUser)
+  //     return <h2>Welcome, {this.state.user.name}!</h2>
+      
+  //   } else {
 
-      return <h2>Welcome, {this.state.currentUser}!</h2>
-      console.log('MESSAGE', this.state.currentUser)
-
-
-    }
-  }
+  //     return <h2>No User</h2>
+  //   }
+  // }
 
   loginView = () => {
     if (!this.state.user.name) {
@@ -61,18 +60,18 @@ class App extends Component {
   }
 
   render = () => {
-    let welcomeMessage = this.userMessage()
+    /*let welcomeMessage = this.userMessage()*/
     return (
       <main className='App'>
         <Route exact path='/'>
-          <Header />
+          <Header user={this.state.user} />
           <MovieData user={this.state.user}/>
         </Route>
         <Route exact path='/login' >
           <h1>HELLO</h1>
         </Route>
         <Route exact path='/movies' >
-          <Header userMessage={welcomeMessage} />
+          <Header user={this.state.user} />
           <MovieData user={this.state.user}/>
         </Route>
         <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} userId={this.state.user.id}/> }
