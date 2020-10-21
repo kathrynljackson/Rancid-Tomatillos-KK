@@ -134,10 +134,10 @@ class ShowPage extends Component {
             <p className='movie-main-overview'>{this.state.overview}</p>
           </section>
           <div style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}>
-          <form className='user-form' style={{ display: this.state.user_rating === '0' ? 'block' : 'none' }} onSubmit={this.handleSubmit}>
+          <form className='user-form'  onSubmit={this.handleSubmit}>
             <label >
               Rate this Movie:
-              <select className='user-form-input' value = {this.state.user_rating} onChange={this.handleChange} style={{ visibility: this.user_rating = '0' ? 'visible' : 'hidden' }}>
+              <select className='user-form-input' value = {this.state.user_rating} onChange={this.handleChange} >
                 <option value="0">Rate this movie!</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -151,7 +151,7 @@ class ShowPage extends Component {
                 <option value="10">10</option>
               </select>
             </label>
-            <button className="show-page-button" type="submit" onClick={this.postNewRating} style={{ visibility: this.state.user_rating === '0' ? 'visible' : 'hidden' }}>Submit My Rating</button>
+            <button className="show-page-button" type="submit" onClick={this.postNewRating} >Submit My Rating</button>
           </form>
           </div>
           <button className="show-page-button" type="submit" onClick={this.editRating} style={{ visibility: this.state.user_rating === '0' ? 'hidden' : 'visible' }}>Delete My Rating</button>

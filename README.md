@@ -60,6 +60,8 @@
 
 ![project page load](https://i.imgur.com/oIX4rKd.gif)
 
+![](https://media.giphy.com/media/59xP75Y0U7gZG46RQj/giphy.gif)
+
  **Issues to be Resolved**
 
   * Fix failed tests and diving into more testing throughout the different components
