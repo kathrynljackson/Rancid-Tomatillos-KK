@@ -32,18 +32,17 @@ class App extends Component {
     return (
       <main className='App'>
         <Route exact path='/'>
-          <Header />
+          <Header user={this.state.user} />
           <MovieData user={this.state.user}/>
-        </Route>
-        <Route exact path='/login' >
-          <h1>HELLO</h1>
         </Route>
         <Route exact path='/movies' >
-          <Header />
+          <Header user={this.state.user} />
           <MovieData user={this.state.user}/>
         </Route>
-        <Route exact path='/login' render={ () => <Login setUser={this.setCurrentUser} /> }
-        />
+        <Route exact path='/login'>
+          <Header user={this.state.user} />
+          <Login setUser={this.setCurrentUser} userId={this.state.user.id} />
+        </Route>
         <Route exact path='/movies/:movie_id'
           render={({ match }) => {
             const { movie_id } = match.params;

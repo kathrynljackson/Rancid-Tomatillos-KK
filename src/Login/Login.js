@@ -27,7 +27,6 @@ class Login extends Component {
     event.preventDefault();
     postData(this.state.email, this.state.password)
     .then(response => {
-      console.log(response)
       return response})
     .then(data => {
       if (data.user) {

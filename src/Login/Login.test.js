@@ -33,11 +33,16 @@ describe('Login', () => {
   })
 
   it('when submit is clicked loginHandler is called', () => {
+    const mockSet = jest.fn();
+    const aUser = {}
     Login.loginHandler = jest.fn();
-    render(<Login
-      setUser={this.setCurrentUser}
-      userId={aUser}/>)
+    render(
 
+        <Login
+      setUser={mockSet}
+      userId={aUser}/>
+
+  )
     userEvent.click(screen.getByText('Submit'))
     expect(Login.loginHandler).toHaveBeenCalledTimes(1)
   })

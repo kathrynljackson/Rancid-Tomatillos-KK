@@ -133,10 +133,11 @@ class ShowPage extends Component {
           <section className='movie-main-bottom'>
             <p className='movie-main-overview'>{this.state.overview}</p>
           </section>
-          <form style={{ display: this.props.user.id > 0 ? 'block' : 'none' }} onSubmit={this.handleSubmit}>
-            <label>
+          <div style={{ display: this.props.user.id > 0 ? 'block' : 'none' }}>
+          <form className='user-form' style={{ display: this.state.user_rating === '0' ? 'block' : 'none' }} onSubmit={this.handleSubmit}>
+            <label >
               Rate this Movie:
-              <select value = {this.state.user_rating} onChange={this.handleChange}>
+              <select className='user-form-input' value = {this.state.user_rating} onChange={this.handleChange} style={{ visibility: this.user_rating = '0' ? 'visible' : 'hidden' }}>
                 <option value="0">Rate this movie!</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -150,11 +151,13 @@ class ShowPage extends Component {
                 <option value="10">10</option>
               </select>
             </label>
-            <button type="submit" onClick={this.postNewRating}>Sumbit My Rating</button>
-            <button type="submit" onClick={this.editRating}>EDIT</button>
-            <NavLink to='/'>BACK</NavLink>
+            <button className="show-page-button" type="submit" onClick={this.postNewRating} style={{ visibility: this.state.user_rating === '0' ? 'visible' : 'hidden' }}>Submit My Rating</button>
           </form>
+          </div>
+          <button className="show-page-button" type="submit" onClick={this.editRating} style={{ visibility: this.state.user_rating === '0' ? 'hidden' : 'visible' }}>Delete My Rating</button>
+          <NavLink className="back-button" to='/'>Back</NavLink>
         </section>
+
       </div>
     )
   }
