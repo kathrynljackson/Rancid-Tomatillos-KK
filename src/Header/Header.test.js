@@ -14,8 +14,18 @@ describe('Login', () => {
 
 
   it('should render header text', () => {
-    render(<Header />)
+    render(
+        <Header />)
+
 
     expect(screen.getByText('Rotten Tomatillos')).toBeInTheDocument()
+  })
+
+  it('should render a link named login', () => {
+    render(
+      <Header />
+    )
+
+    expect(screen.getByText('LOGIN')).toBeInTheDocument()
   })
 })
