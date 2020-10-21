@@ -22,30 +22,12 @@ describe('Login', () => {
     expect(passwordInput).toBeInTheDocument();
   })
 
-
-  // it('should render input text', () => {
-  //   const aUser = {}
-  //   const emailInput = screen.getByText('Email:')
-  //   const passwordInput = screen.getByText('Password:')
-  //
-  //   render(<Login
-  //     setUser={jest.fn()}
-  //     userId={aUser}/>)
-  //
-  //   expect(emailInput).toBeInTheDocument()
-  //   expect(passwordInput).toBeInTheDocument()
-  // })
-
-
   it('should have a submit button', () => {
-    const aUser = {}
-    const buttonName = screen.getByRole('button', {name: 'Submit'})
-    render(<Login
-      setUser={jest.fn()}
-      userId={aUser}
-      />)
+    render(<Login />)
 
-    expect(buttonName).toBeInTheDocument();
+    const submitButton = screen.getByRole('button', {name: 'Submit'})
+
+    expect(submitButton).toBeInTheDocument();
   })
 
   it('when submit is clicked loginHandler is called', () => {
