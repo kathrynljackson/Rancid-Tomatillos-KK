@@ -12,12 +12,6 @@ class Header extends Component {
   }
 
 
-  // componentDidMount(){
-  //   console.log('CURRENT USER!', this.state.currentUser1)
-   
-  //     this.setHeaderMessage();
-  // }
-
   setHeaderMessage() {
     console.log("SET HEADER MESSAGE IS RUNNING");
     if (this.props.user.name) {
@@ -26,13 +20,23 @@ class Header extends Component {
     }
   }
 
+  logout = (event) => {
+   localStorage.clear();
+ 
+  }
+
   render() {
     return (
-      <header>
-        <section className="login-message">{this.state.headerMessage}</section>
-        <p className="header-text">Rotten Tomatillos</p>
-        <Link to={'/login'} className='header-link'>LOGIN</Link>
+      <div>
+      
+      <header className='header'>
+        <a className="header-text header-link" href='https://github.com/kathrynljackson/Rancid-Tomatillos-KK'>About</a>
+        <a className="header-text header-link" href='/login'>Login</a>
+        <a className="header-text header-link" href='/' onClick={this.logout()}>Logout</a>
+        <a className="header-text rotten-tomatillos">Rotten Tomatillos</a>
       </header>
+      <section className="header-text login-message">{this.state.headerMessage}</section>
+      </div>
     )
   }
 }
